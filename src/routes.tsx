@@ -1,5 +1,6 @@
 import App from "./App"
 import LayoutUser from "./layout/LayoutUser"
+import Us from "./pages/us/Us"
 
 export const routes = [
     {
@@ -9,6 +10,10 @@ export const routes = [
             {
                 path: "",
                 element: <App/>
+            },
+            {
+                path: "about",
+                element: <Us/> 
             }
 
         ]
