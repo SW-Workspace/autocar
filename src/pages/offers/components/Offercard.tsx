@@ -29,7 +29,7 @@ export default function OfferCard({
 
   return (
     <div
-      className={`bg-white rounded-2xl w-[80%] shadow-sm overflow-hidden border border-gray-200 ${
+      className={`bg-white rounded-2xl w-auto shadow-sm overflow-hidden border border-gray-200 ${
         small ? "scale-95" : ""
       }`}
     >

@@ -13,7 +13,7 @@ export default function Offers() {
         </p>
 
         <div className="grid md:grid-cols-2 justify-center gap-8 max-w-4xl mx-auto w-full">
-          {/* ---- Tarjeta 1 ---- */}
+
           <OfferCard
             color="orange"
             icon={<Percent size={48} />}
@@ -23,7 +23,6 @@ export default function Offers() {
             valid="31 de Diciembre, 2025"
           />
 
-          {/* ---- Tarjeta 2 ---- */}
           <OfferCard
             color="blue"
             icon={<Calendar size={48} />}
@@ -33,7 +32,6 @@ export default function Offers() {
             valid="31 de Diciembre, 2025"
           />
 
-          {/* ---- Tarjeta 3 (más pequeña) ---- */}
           <OfferCard
             color="orange"
             icon={<Gift size={40} />}
@@ -44,7 +42,6 @@ export default function Offers() {
             small
           />
 
-          {/* ---- Tarjeta 4 (más pequeña) ---- */}
           <OfferCard
             color="blue"
             icon={<Star size={40} />}

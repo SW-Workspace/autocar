@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 export default function Contact() {
   return (
     <>
-      <div className="contact-container min-h-dvh flex flex-col items-center gap-24 p-6">
+      <div className="contact-container min-h-dvh flex flex-col items-center gap-24 p-6 mt-10">
         <div className="contact-info flex flex-col items-center justify-center gap-4">
           <h1 className="font-bold text-6xl leading-normal">Contáctanos</h1>
           <p className="text-slate-600 text-lg max-w-[60ch] mx-auto text-center">

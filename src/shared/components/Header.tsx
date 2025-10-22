@@ -6,15 +6,15 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-[#0056a4] text-white font-semibold">
+    <header className="fixed top-0 bg-[#0056a4]/98 w-full text-white font-semibold z-100">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
-        <div className="flex gap-2 items-center text-lg">
-          <Car />
-          <Link to="/">AutoRent</Link>
+        <div className="flex gap-2 items-center justify-center text-lg">
+          <Car size={30}/>
+          <Link to="/" className="font-bold">AutoRent</Link>
         </div>
 
         <nav className="hidden md:flex gap-6">
-          <Link to="" className="hover:text-gray-200 transition">
+          <Link to="offers" className="hover:text-gray-200 transition">
             Ofertas
           </Link>
           <Link to="about" className="hover:text-gray-200 transition">
@@ -44,17 +44,23 @@ export default function Header() {
         </div>
       </div>
 
-            {isOpen && (
-                <div className="md:hidden bg-[#004a8a] px-6 py-4 flex flex-col gap-4 text-sm border-t border-white/20">
-                    <a href="#" className="hover:text-gray-200 transition">Ofertas</a>
-                    <a href="#" className="hover:text-gray-200 transition">Nosotros</a>
-                    <a href="#" className="hover:text-gray-200 transition">Contacto</a>
-                    <div className="flex items-center gap-2 pt-2 border-t border-white/10">
-                        <User size={18} />
-                        <span>Iniciar sesión</span>
-                    </div>
-                </div>
-            )}
-        </header>
-    );
+      {isOpen && (
+        <div className="md:hidden bg-[#004a8a] px-6 py-4 flex flex-col gap-4 text-sm border-t border-white/20">
+          <a href="#" className="hover:text-gray-200 transition">
+            Ofertas
+          </a>
+          <a href="#" className="hover:text-gray-200 transition">
+            Nosotros
+          </a>
+          <Link to="/contact" className="hover:text-gray-200 transition">
+            Contacto
+          </Link>
+          <div className="flex items-center gap-2 pt-2 border-t border-white/10">
+            <User size={18} />
+            <Link to="/">Iniciar sesión</Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
 }
