@@ -3,15 +3,13 @@ import { Users, MapPin, Clock, Star, ShieldCheck, Award, Lightbulb, Handshake, C
 export default function Us() {
   return (
     <>
-      {/* Encabezado principal */}
-      <div className="bg-blue-900 text-white px-6 py-22 flex flex-col items-center justify-center h-auto">
+      <div className="bg-blue-900 text-white px-6 py-30 flex flex-col items-center justify-center h-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Sobre AutoRent</h1>
         <p className="text-center text-lg md:text-xl mb-8 w-[60%]">
           Somos líderes en alquiler de vehículos con más de 15 años de experiencia brindando el mejor servicio a nuestros clientes.
         </p>
       </div>
 
-      {/* Sección de estadísticas */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full h-auto bg-neutral-200 items-center justify-center px-10 py-12">
         <div className="bg-white text-blue-900 p-6 rounded-lg shadow-lg text-center">
           <div className="flex justify-center mb-2">
@@ -54,10 +52,9 @@ export default function Us() {
         </div>
       </div>
 
-      {/* Nueva sección: Misión, Visión y Valores */}
       <section className="bg-white text-[#003d74] py-16 px-6">
         <div className="max-w-5xl mx-auto space-y-12">
-          {/* Misión */}
+ 
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Nuestra Misión</h2>
             <p className="text-gray-700  text-lg leading-relaxed">
@@ -66,7 +63,6 @@ export default function Us() {
             </p>
           </div>
 
-          {/* Visión */}
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Nuestra Visión</h2>
             <p className="text-gray-700 leading-relaxed text-lg">
@@ -75,7 +71,6 @@ export default function Us() {
             </p>
           </div>
 
-          {/* Valores */}
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Nuestros Valores</h2>
             <ul className="flex flex-wrap justify-center gap-6 text-gray-700 font-medium">
