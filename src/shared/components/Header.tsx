@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Car, User, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,9 +14,9 @@ export default function Header() {
                 </div>
 
                 <nav className="hidden md:flex gap-6">
-                    <a href="#" className="hover:text-gray-200 transition">Ofertas</a>
-                    <a href="#" className="hover:text-gray-200 transition">Nosotros</a>
-                    <a href="#" className="hover:text-gray-200 transition">Contacto</a>
+                    <Link to="" className="hover:text-gray-200 transition">Ofertas</Link>
+                    <Link to="about" className="hover:text-gray-200 transition">Nosotros</Link>
+                    <Link to="#" className="hover:text-gray-200 transition">Contacto</Link>
                 </nav>
 
                 <div className="flex items-center gap-3">

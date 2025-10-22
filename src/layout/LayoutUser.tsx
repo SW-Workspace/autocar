@@ -7,7 +7,7 @@ export default function LayoutUser(){
         <>
         <div>
             <Header/>
-            <div className="h-dvh">
+            <div className="h-full">
                 <Outlet/>
             </div>
             <Footer/>
