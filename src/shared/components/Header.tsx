@@ -33,7 +33,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-2">
             <User size={18} />
-            <Link to="/">Iniciar sesión</Link>
+            <Link to="/auth/login">Iniciar sesión</Link>
           </div>
 
           <button
@@ -59,7 +59,7 @@ export default function Header() {
           </Link>
           <div className="flex items-center gap-2 pt-2 border-t border-white/10">
             <User size={18} />
-            <Link to="/">Iniciar sesión</Link>
+            <Link to="/auth/login">Iniciar sesión</Link>
           </div>
         </div>
       )}
