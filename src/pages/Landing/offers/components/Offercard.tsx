@@ -1,13 +1,9 @@
 import { Calendar } from "lucide-react";
+import type { OfferItem } from "../data/offersData";
+import type { ReactNode } from "react";
 
-interface OfferCardProps {
-  color: "orange" | "blue";
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  code: string;
-  valid: string;
-  small?: boolean;
+interface OfferCardProps extends Omit<OfferItem, "icon"> {
+  icon: ReactNode;
 }
 
 export default function OfferCard({
