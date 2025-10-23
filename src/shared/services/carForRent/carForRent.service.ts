@@ -36,25 +36,25 @@ export async function supabaseGetCarByRender(userRenderId: number) {
     const { data, error } = await supabase
         .from('car_for_rent')
         .select('*')
-        .eq('user_renter', userRenderId)
+        .eq('renter_id', userRenderId)
         .order('created_at', { ascending: false });
 
     if (error) throw new Error(error.message);
     return data || [];
 };
 
-export async function supabaseGetCarByRented(userRentedId: number) {
+export async function supabaseGetCarByOwner(userOwnerId: number) {
     const { data, error } = await supabase
         .from('car_for_rent')
         .select('*')
-        .eq('user_rented', userRentedId)
+        .eq('owner_id', userOwnerId)
         .order('created_at', { ascending: false });
 
     if (error) throw new Error(error.message);
     return data || [];
 };
 
-export async function supabaseGetAllAVailableCars() {
+export async function supabaseGetAllAvailableCars() {
     const { data, error } = await supabase
         .from('car_for_rent')
         .select('*')

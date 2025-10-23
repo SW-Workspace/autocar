@@ -1,17 +1,17 @@
 export interface SB_CarForRentModel {
-  id?: number;
+  id: number;
   group: string;
   make: string;
-  year: number;
+  year?: number;
   passenger_capacity: number;
   luggage_capacity: number;
   transmission: string;
-  travel_conditions: string;
-  fuel_type: string;
-  user_renter: number;
-  user_rented?: number | null;
+  travel_conditions?: string;
+  fuel_type?: string;
+  renter_id: number;
+  owner_id?: number | null;
   pick_up_location: string;
-  available?: boolean;
+  available: boolean;
   rent_per_day: number;
   rental_duraction_days?: number;
   details?: string;
