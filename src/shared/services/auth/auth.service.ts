@@ -9,8 +9,6 @@ export async function supabaseSignUpUser({first_name, last_name, email, phone, p
 
   if (authError) throw new Error(authError.message);
 
-  const userId = authData.user?.id
-
   const { data: userData, error: insertError } = await supabase
         .from('users')
         .insert([
@@ -25,7 +23,7 @@ export async function supabaseSignUpUser({first_name, last_name, email, phone, p
     
     if(insertError) throw new Error(insertError.message);
   
-    return {auth:authData, user:userData}
+    return {auth:authData, user:userData};
 }
 
 
@@ -34,13 +32,13 @@ export async function supabaseSignInWithEmail({email, password}: SB_SingIn) {
     .from('users')
     .select("*")
     .eq("email", email)
-    .maybeSingle()
+    .maybeSingle();
 
-    if (userError) throw Error(userError.message)
+    if (userError) throw Error(userError.message);
 
    if (!userData){
-    console.log("Este usuario no existe", userData)
-    return{error: "Este usuario no existe en la base de datos"}
+    console.log("Este usuario no existe", userData);
+    return{error: "Este usuario no existe en la base de datos"};
    }
 
   const { data:authData, error:authError } = await supabase.auth.signInWithPassword({
@@ -49,7 +47,7 @@ export async function supabaseSignInWithEmail({email, password}: SB_SingIn) {
   })
 
   if(authError) throw new Error(authError.message);
-  return {auth:authData.session, user: userData}
+  return {auth:authData.session, user: userData};
 }
 
 
@@ -59,10 +57,10 @@ export async function supabaseGetUserById(userId:number) {
      .from('users')
      .select("*")
      .eq("id", userId)
-     .single()
+     .single();
 
-     if(userError) throw Error(userError.message)
-    return userData
+     if(userError) throw Error(userError.message);
+    return userData;
 }
 
 
@@ -77,15 +75,15 @@ export const supabaseGetCurrentSession = async () => {
 
 export const supabaseCloseSession = async () =>{
     const { error:outError } = await supabase.auth.signOut();
-    if (outError) throw new Error(outError.message)
+    if (outError) throw new Error(outError.message);
 }
 
 export async function supabaseGetUserAll() {
     const {data: userData, error: userError} = await supabase
      .from('users')
      .select("*")
-     .single()
+     .single();
 
-     if(userError) throw Error(userError.message)
-    return userData
+     if(userError) throw Error(userError.message);
+    return userData;
 }

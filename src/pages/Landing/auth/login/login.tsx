@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import type { ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabaseSignInWithEmail } from "@/shared/services/auth/auth.service";
 
@@ -40,7 +40,7 @@ export default function Login() {
                             email:form.email,
                             password: form.password
                         })
-                       navigate("/")
+                       navigate("/");
                     }}>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">

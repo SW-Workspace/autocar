@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import type { ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabaseSignUpUser } from "@/shared/services/auth/auth.service";
 
@@ -31,14 +31,6 @@ export default function Register() {
         }));
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-        e.preventDefault();
-        if (form.password === form.confirmPassword) {
-            console.log("Formulario enviado:", form);
-        } else {
-            alert('Las contraseñas no coinsiden')
-        }
-    };
 
     return (
         <section className="min-h-screen bg-gradient-to-b from-[#1966AD] text-gray-800 to-[#003d74] flex justify-center items-center p-4">
@@ -52,15 +44,17 @@ export default function Register() {
                     className="space-y-4" 
                     onSubmit={(e)=>{
                         e.preventDefault();
-                        handleSubmit;
-                        supabaseSignUpUser({
-                            first_name:form.name,
-                            last_name:form.lastName,
-                            email:form.email,
-                            password:form.password,
-                            phone:parseInt(form.phone)
-                        });
-                        navigate("/auth/login")
+                        if(form.password === form.confirmPassword){
+                            supabaseSignUpUser({
+                                first_name:form.name,
+                                last_name:form.lastName,
+                                email:form.email,
+                                password:form.password,
+                                phone:parseInt(form.phone)
+                            });
+                            navigate("/auth/login")
+                        } else alert('Las contraseñas no coinsiden')
+                        
                     }}
                 >
                     <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
