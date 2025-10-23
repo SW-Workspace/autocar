@@ -1,13 +1,13 @@
-import CarCard from "./components/CarCard";
-import Hero from "./components/Hero";
-import WhyChooseUs from "./components/WhyChooseUs";
-import Destinations from "./components/Destinations";
+import Hero from "./sections/Hero/Hero";
+import Fleet from "./sections/Fleet/Fleet";
+import WhyChooseUs from "./sections/ChooseUs/WhyChooseUs";
+import Destinations from "./sections/Destinations/Destinations";
 
 export default function Main() {
   return (
     <>
       <Hero />
-      <CarCard />
+      <Fleet />
       <WhyChooseUs />
       <Destinations />
     </>
