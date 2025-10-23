@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
-import { Link } from "react-router-dom";
+import type { ChangeEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { supabaseSignInWithEmail } from "@/shared/services/auth/auth.service";
 
 interface FormData {
     email: string,
@@ -12,6 +13,7 @@ export default function Login() {
         email: "",
         password: ""
     });
+    const navigate = useNavigate();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
@@ -21,11 +23,6 @@ export default function Login() {
         }));
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-        e.preventDefault();
-
-        console.log("Formulario enviado:", form);
-    };
 
     return (
         <section className="min-h-screen bg-gradient-to-b from-[#1966AD] to-[#003d74] flex justify-center items-center p-4">
@@ -35,7 +32,16 @@ export default function Login() {
                     <p className="text-gray-600 mt-2">Accede a tu cuenta de AutoRent</p>
                 </div>
                 
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form 
+                    className="space-y-6"
+                    onSubmit={(e)=>{
+                        e.preventDefault();
+                        supabaseSignInWithEmail({
+                            email:form.email,
+                            password: form.password
+                        })
+                       navigate("/");
+                    }}>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                             Correo electrónico
@@ -47,7 +53,7 @@ export default function Login() {
                             value={form.email}
                             onChange={handleChange}
                             placeholder="example@gmail.com"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
+                            className="w-full px-4 py-3 border border-gray-300 text-gray-400 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
                         />
                     </div>
@@ -63,7 +69,7 @@ export default function Login() {
                             value={form.password}
                             onChange={handleChange}
                             placeholder="••••••••"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
+                            className="w-full px-4 py-3 border text-gray-800 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
                         />
                     </div>
