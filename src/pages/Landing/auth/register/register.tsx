@@ -1,6 +1,43 @@
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 
+interface FormData {
+    name: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    password: string;
+    confirmPassword: string;
+}
+
 export default function Register() {
+    const [form, setForm] = useState<FormData>({
+        name: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+    });
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        const { name, value } = e.target;
+        setForm(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+        if (form.password === form.confirmPassword) {
+            console.log("Formulario enviado:", form);
+        } else {
+            alert('Las contraseñas no coinsiden')
+        }
+    };
+
     return (
         <section className="min-h-screen bg-gradient-to-b from-[#1966AD] to-[#003d74] flex justify-center items-center p-4">
             <div className="bg-white rounded-lg shadow-lg w-sm md:w-md lg:w-lg p-6">
@@ -9,7 +46,7 @@ export default function Register() {
                     <p className="text-gray-600 text-sm mt-1">Crea tu cuenta de AutoCard</p>
                 </div>
                 
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
                         <div className="space-y-1">
                             <label htmlFor="name" className="text-sm font-medium text-gray-700 mb-2">
@@ -18,7 +55,9 @@ export default function Register() {
                             <input 
                                 type="text" 
                                 name="name" 
-                                id="name" 
+                                id="name"
+                                value={form.name}
+                                onChange={handleChange}
                                 placeholder="Jhon"
                                 className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                                 required
@@ -32,6 +71,8 @@ export default function Register() {
                                 type="text" 
                                 name="lastName" 
                                 id="lastName" 
+                                value={form.lastName}
+                                onChange={handleChange}
                                 placeholder="Doe"
                                 className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                                 required
@@ -46,7 +87,9 @@ export default function Register() {
                         <input 
                             type="email" 
                             name="email" 
-                            id="email" 
+                            id="email"
+                            value={form.email}
+                            onChange={handleChange}
                             placeholder="example@gmail.com"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
@@ -60,7 +103,9 @@ export default function Register() {
                         <input 
                             type="tel" 
                             name="phone" 
-                            id="phone" 
+                            id="phone"
+                            value={form.phone}
+                            onChange={handleChange}
                             placeholder="1234567890"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
@@ -75,6 +120,8 @@ export default function Register() {
                             type="password" 
                             name="password" 
                             id="password" 
+                            value={form.password}
+                            onChange={handleChange}
                             placeholder="••••••••"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
@@ -82,13 +129,15 @@ export default function Register() {
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
                             Confirma tu Contraseña
                         </label>
                         <input 
                             type="password" 
-                            name="password" 
-                            id="password" 
+                            name="confirmPassword" 
+                            id="confirmPassword" 
+                            value={form.confirmPassword}
+                            onChange={handleChange}
                             placeholder="••••••••"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
@@ -110,4 +159,4 @@ export default function Register() {
             </div>
         </section>
     )
-}
+};

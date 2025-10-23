@@ -22,10 +22,6 @@ export const routes = [
         path: "offers",
         element: <Offers />,
       },
-      {
-        path: "register",
-        element: <Register />
-      },
     ],
   },
   {

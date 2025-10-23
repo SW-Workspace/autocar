@@ -1,5 +1,32 @@
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
+
+interface FormData {
+    email: string,
+    password: string
+}
+
 export default function Login() {
+    const [form, setForm] = useState<FormData>({
+        email: "",
+        password: ""
+    });
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        const { name, value } = e.target;
+        setForm(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+
+        console.log("Formulario enviado:", form);
+    };
+
     return (
         <section className="min-h-screen bg-gradient-to-b from-[#1966AD] to-[#003d74] flex justify-center items-center p-4">
             <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-8">
@@ -8,7 +35,7 @@ export default function Login() {
                     <p className="text-gray-600 mt-2">Accede a tu cuenta de AutoRent</p>
                 </div>
                 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                             Correo electrónico
@@ -16,7 +43,9 @@ export default function Login() {
                         <input 
                             type="email" 
                             name="email" 
-                            id="email" 
+                            id="email"
+                            value={form.email}
+                            onChange={handleChange}
                             placeholder="example@gmail.com"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
@@ -31,6 +60,8 @@ export default function Login() {
                             type="password" 
                             name="password" 
                             id="password" 
+                            value={form.password}
+                            onChange={handleChange}
                             placeholder="••••••••"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
                             required
@@ -63,4 +94,4 @@ export default function Login() {
             </div>
         </section>
     )
-}
+};
