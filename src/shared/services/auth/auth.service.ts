@@ -1,8 +1,15 @@
 import { supabase } from "@/config/supabase/supabase";
-import type { SB_SingUp, SB_SingIn} from "@/shared/models/auth.model";
+import type { SB_SignUpModel, SB_SignInModel} from "@/shared/models/auth.model";
 
-export async function supabaseSignUpUser({first_name, last_name, email, phone, password}: SB_SingUp) {
-  const { data: authData, error:authError } = await supabase.auth.signUp({
+export async function supabaseSignUpUser({
+    first_name,
+    last_name,
+    email,
+    phone,
+    password
+}: SB_SignUpModel) {
+  
+    const { data: authData, error:authError } = await supabase.auth.signUp({
     email: email,
     password: password,
   })
@@ -27,7 +34,7 @@ export async function supabaseSignUpUser({first_name, last_name, email, phone, p
 }
 
 
-export async function supabaseSignInWithEmail({email, password}: SB_SingIn) {
+export async function supabaseSignInWithEmail({email, password}: SB_SignInModel) {
     const {data:userData, error:userError} = await supabase
     .from('users')
     .select("*")
@@ -62,15 +69,6 @@ export async function supabaseGetUserById(userId:number) {
      if(userError) throw Error(userError.message);
     return userData;
 }
-
-
-export const supabaseGetCurrentSession = async () => {
-    const { data: { session }, error } = await supabase.auth.getSession();
-
-    if (error) throw new Error(error.message);
-
-    return session;
-};
 
 
 export const supabaseCloseSession = async () =>{
