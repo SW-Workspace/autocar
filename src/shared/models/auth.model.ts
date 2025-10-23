@@ -6,7 +6,7 @@ export interface SB_SingIn{
 export interface SB_SingUp{
     first_name: string;
     last_name: string;
-    email:string;
+    email: string;
     phone: number;
-    password:string;
+    password: string;
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { supabaseSignUpUser } from "@/shared/services/auth/auth.service";
 
 interface FormData {
     name: string;
@@ -20,6 +21,7 @@ export default function Register() {
         password: "",
         confirmPassword: "",
     });
+    const navigate = useNavigate();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
@@ -39,14 +41,28 @@ export default function Register() {
     };
 
     return (
-        <section className="min-h-screen bg-gradient-to-b from-[#1966AD] to-[#003d74] flex justify-center items-center p-4">
+        <section className="min-h-screen bg-gradient-to-b from-[#1966AD] text-gray-800 to-[#003d74] flex justify-center items-center p-4">
             <div className="bg-white rounded-lg shadow-lg w-sm md:w-md lg:w-lg p-6">
                 <div className="text-center mb-6">
                     <h1 className="text-xl font-bold text-[#003d74]">Registrase</h1>
                     <p className="text-gray-600 text-sm mt-1">Crea tu cuenta de AutoCard</p>
                 </div>
                 
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form 
+                    className="space-y-4" 
+                    onSubmit={(e)=>{
+                        e.preventDefault();
+                        handleSubmit;
+                        supabaseSignUpUser({
+                            first_name:form.name,
+                            last_name:form.lastName,
+                            email:form.email,
+                            password:form.password,
+                            phone:parseInt(form.phone)
+                        });
+                        navigate("/auth/login")
+                    }}
+                >
                     <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
                         <div className="space-y-1">
                             <label htmlFor="name" className="text-sm font-medium text-gray-700 mb-2">

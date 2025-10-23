@@ -1,8 +1,8 @@
 import { supabase } from "@/config/supabase/supabase";
 import type { SB_SingUp, SB_SingIn} from "@/shared/models/auth.model";
 
-export async function signUpUser({first_name, last_name, email, phone, password}: SB_SingUp) {
-  const { data: authData, error: authError } = await supabase.auth.signUp({
+export async function supabaseSignUpUser({first_name, last_name, email, phone, password}: SB_SingUp) {
+  const { data: authData, error:authError } = await supabase.auth.signUp({
     email: email,
     password: password,
   })
@@ -15,7 +15,6 @@ export async function signUpUser({first_name, last_name, email, phone, password}
         .from('users')
         .insert([
             {
-                id: userId,
                 first_name: first_name,
                 last_name: last_name,
                 email: email,
@@ -30,7 +29,7 @@ export async function signUpUser({first_name, last_name, email, phone, password}
 }
 
 
-export async function signInWithEmail({email, password}: SB_SingIn) {
+export async function supabaseSignInWithEmail({email, password}: SB_SingIn) {
     const {data:userData, error:userError} = await supabase
     .from('users')
     .select("*")
@@ -50,12 +49,11 @@ export async function signInWithEmail({email, password}: SB_SingIn) {
   })
 
   if(authError) throw new Error(authError.message);
-  
   return {auth:authData.session, user: userData}
 }
 
 
-export async function getUserById(userId:number) {
+export async function supabaseGetUserById(userId:number) {
     
     const {data: userData, error: userError} = await supabase
      .from('users')
@@ -68,13 +66,6 @@ export async function getUserById(userId:number) {
 }
 
 
-export async function updatePasswordForEmail(email:string){
-    await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: 'http://example.com/account/update-password',
-    })
-}
-
-
 export const supabaseGetCurrentSession = async () => {
     const { data: { session }, error } = await supabase.auth.getSession();
 
@@ -82,3 +73,19 @@ export const supabaseGetCurrentSession = async () => {
 
     return session;
 };
+
+
+export const supabaseCloseSession = async () =>{
+    const { error:outError } = await supabase.auth.signOut();
+    if (outError) throw new Error(outError.message)
+}
+
+export async function supabaseGetUserAll() {
+    const {data: userData, error: userError} = await supabase
+     .from('users')
+     .select("*")
+     .single()
+
+     if(userError) throw Error(userError.message)
+    return userData
+}
