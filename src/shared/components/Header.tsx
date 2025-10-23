@@ -6,8 +6,8 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 bg-[#0056a4]/98 w-full text-white font-semibold z-100">
-      <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
+    <header className="fixed top-0 bg-[#1966AD] border-b border-b-white/40 w-full text-white font-semibold z-100">
+      <div className="mx-auto flex justify-around items-center p-4">
         <div className="flex gap-2 items-center justify-center text-lg">
           <Car size={30} />
           <Link to="/" className="font-bold">

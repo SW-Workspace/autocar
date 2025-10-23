@@ -1,0 +1,71 @@
+import CarCard from "./components/CarCard";
+
+export default function Fleet() {
+  const data = [
+    {
+      image:
+        "https://v0-car-rental-page-seven.vercel.app/compact-economy-car-silver.jpg",
+      price: 35,
+      name: "Grupo Ecónomico",
+      related: "Kia Picanto, Chevrolet Spark",
+      passengers: 5,
+      suitcases: 2,
+      type: "Manual",
+    },
+    {
+      image:
+        "https://v0-car-rental-page-seven.vercel.app/compact-suv-white-modern.jpg",
+      price: 55,
+      name: "Grupo SUV Compacto",
+      related: "Nissan Kick, Hyundai Creta",
+      passengers: 5,
+      suitcases: 3,
+      type: "Automática",
+    },
+    {
+      image:
+        "https://v0-car-rental-page-seven.vercel.app/sedan-car-red-modern.jpg",
+      price: 65,
+      name: "Grupo Sedán Premium",
+      related: "Toyota Corolla, Honda Civic",
+      passengers: 5,
+      suitcases: 3,
+      type: "Automática"
+    },
+  ];
+
+  return (
+    <section className="py-16 md:py-24 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12 space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+            Conoce nuestra flota
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-neutral-500">
+            Las mejores opciones para que reserves y aproveches
+          </p>
+        </div>
+      </div>
+
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12 w-7xl mx-auto">
+        {data.map((car, i) => (
+        <CarCard
+            key={i}
+            image={car.image}
+            price={car.price}
+            name={car.name}
+            related={car.related}
+            passengers={car.passengers}
+            suitcases={car.suitcases}
+            type={car.type as "Manual" | "Automática"}
+          />
+        ))}
+      </div>
+      <div className="text-center">
+        <button className="items-center justify-center gap-2 cursor-pointer text-sm font-medium transition-all border shadow-xs h-10 rounded-md px-6  border-[#0056A4] text-[#0056A4] hover:bg-[#0056A4] hover:text-white bg-transparent">
+          Ver todos los grupos
+        </button>
+      </div>
+    </section>
+  );
+}
