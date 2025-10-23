@@ -1,17 +1,30 @@
-
-
 const Destinations = () => {
   const destinations = [
-    { name: "Quito", img: "https://v0-car-rental-page-seven.vercel.app/galapagos-islands-beach-nature.jpg", delay: "0s" },
-    { name: "Guayaquil", img: "https://v0-car-rental-page-seven.vercel.app/cuenca-ecuador-colonial-architecture.jpg", delay: "0.1s" },
-    { name: "Cuenca", img: "https://v0-car-rental-page-seven.vercel.app/guayaquil-ecuador-waterfront.jpg", delay: "0.2s" },
-    { name: "Galápagos", img: "https://v0-car-rental-page-seven.vercel.app/quito-ecuador-city-mountains.jpg", delay: "0.3s" },
+    {
+      name: "Quito",
+      img: "https://v0-car-rental-page-seven.vercel.app/galapagos-islands-beach-nature.jpg",
+      delay: "0s",
+    },
+    {
+      name: "Guayaquil",
+      img: "https://v0-car-rental-page-seven.vercel.app/cuenca-ecuador-colonial-architecture.jpg",
+      delay: "0.1s",
+    },
+    {
+      name: "Cuenca",
+      img: "https://v0-car-rental-page-seven.vercel.app/guayaquil-ecuador-waterfront.jpg",
+      delay: "0.2s",
+    },
+    {
+      name: "Galápagos",
+      img: "https://v0-car-rental-page-seven.vercel.app/quito-ecuador-city-mountains.jpg",
+      delay: "0.3s",
+    },
   ];
 
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-
         <div className="text-center mb-12 space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
             Destinos para descubrir

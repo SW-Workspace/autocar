@@ -9,11 +9,11 @@ export default function Offers() {
           Ofertas Especiales
         </h2>
         <p className="text-gray-600 mb-10">
-          Aprovecha nuestras promociones exclusivas y ahorra en tu próximo alquiler
+          Aprovecha nuestras promociones exclusivas y ahorra en tu próximo
+          alquiler
         </p>
 
         <div className="grid md:grid-cols-2 justify-center gap-8 max-w-4xl mx-auto w-full">
-
           <OfferCard
             color="orange"
             icon={<Percent size={48} />}
@@ -56,5 +56,3 @@ export default function Offers() {
     </section>
   );
 }
-
-

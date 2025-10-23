@@ -1,4 +1,15 @@
-import { Users, MapPin, Clock, Star, ShieldCheck, Award, Lightbulb, Handshake, ClipboardCheck, Eye } from 'lucide-react';
+import {
+  Users,
+  MapPin,
+  Clock,
+  Star,
+  ShieldCheck,
+  Award,
+  Lightbulb,
+  Handshake,
+  ClipboardCheck,
+  Eye,
+} from "lucide-react";
 
 export default function Us() {
   return (
@@ -6,7 +17,8 @@ export default function Us() {
       <div className="bg-blue-900 text-white px-6 py-30 flex flex-col items-center justify-center h-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Sobre AutoRent</h1>
         <p className="text-center text-lg md:text-xl mb-8 w-[60%]">
-          Somos líderes en alquiler de vehículos con más de 15 años de experiencia brindando el mejor servicio a nuestros clientes.
+          Somos líderes en alquiler de vehículos con más de 15 años de
+          experiencia brindando el mejor servicio a nuestros clientes.
         </p>
       </div>
 
@@ -54,25 +66,33 @@ export default function Us() {
 
       <section className="bg-white text-[#003d74] py-16 px-6">
         <div className="max-w-5xl mx-auto space-y-12">
- 
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Nuestra Misión</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Nuestra Misión
+            </h2>
             <p className="text-gray-700  text-lg leading-relaxed">
-              Proporcionar servicios de alquiler de vehículos de alta calidad que superen las expectativas de nuestros clientes,
-              ofreciendo una flota moderna, precios competitivos y un servicio al cliente excepcional.
+              Proporcionar servicios de alquiler de vehículos de alta calidad
+              que superen las expectativas de nuestros clientes, ofreciendo una
+              flota moderna, precios competitivos y un servicio al cliente
+              excepcional.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Nuestra Visión</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Nuestra Visión
+            </h2>
             <p className="text-gray-700 leading-relaxed text-lg">
-              Ser la empresa líder en alquiler de vehículos en la región, reconocida por nuestra innovación,
-              compromiso con la sostenibilidad y dedicación a la satisfacción del cliente.
+              Ser la empresa líder en alquiler de vehículos en la región,
+              reconocida por nuestra innovación, compromiso con la
+              sostenibilidad y dedicación a la satisfacción del cliente.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Nuestros Valores</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              Nuestros Valores
+            </h2>
             <ul className="flex flex-wrap justify-center gap-6 text-gray-700 font-medium">
               <li className="flex items-center gap-2 bg-[#e6f0fa] px-4 py-2 rounded-xl shadow-sm">
                 <ShieldCheck size={18} /> Integridad

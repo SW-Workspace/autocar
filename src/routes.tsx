@@ -1,30 +1,25 @@
-import App from "./App"
-import LayoutUser from "./layout/LayoutUser"
-import Us from "./pages/us/Us"
-import Contact from "./pages/contacts/Contract"
-import Offers from "./pages/offers/Offers"
+import App from "./App";
+import Us from "./pages/Landing/us/Us";
+import Contact from "./pages/Landing/contacts/Contact";
+import Offers from "./pages/Landing/offers/Offers";
 
 export const routes = [
-    {
-        path: "/",
-        element: <LayoutUser/>,
-        children: [
-            {
-                path: "",
-                element: <App/>
-            },
-            {
-                path: "about",
-                element: <Us/> 
-            },
-            {
-            path: "contact",
-            element: <Contact />
-            },
-            {
-                path: "offers",
-                element: <Offers/>
-            }
-        ]
-    }
-]
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "about",
+        element: <Us />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "offers",
+        element: <Offers />,
+      },
+    ],
+  },
+];

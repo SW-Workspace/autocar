@@ -24,8 +24,7 @@ export default function OfferCard({
       ? "bg-[#f37513] hover:bg-orange-500"
       : "bg-[#0056a4] hover:bg-blue-800";
 
-  const headerColor =
-    color === "orange" ? "bg-[#f37513]" : "bg-[#0056a4]";
+  const headerColor = color === "orange" ? "bg-[#f37513]" : "bg-[#0056a4]";
 
   return (
     <div
@@ -61,3 +60,4 @@ export default function OfferCard({
     </div>
   );
 }
+
