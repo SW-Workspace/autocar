@@ -4,6 +4,7 @@ import Contact from "./pages/Landing/contacts/Contact";
 import Offers from "./pages/Landing/offers/Offers";
 import Login from "./pages/Landing/auth/login/login";
 import Register from "./pages/Landing/auth/register/register";
+import IndividualCar from "./pages/Landing/individualCar/IndividualCar";
 
 export const routes = [
   {
@@ -22,6 +23,10 @@ export const routes = [
         path: "offers",
         element: <Offers />,
       },
+      {
+        path: "car-info",
+        element: <IndividualCar/>
+      }
     ],
   },
   {
