@@ -2,7 +2,7 @@ import { Calendar, Clock, MapPin, Search } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative bg-linear-to-br from-[#0056A4] to-[#004079] overflow-hidden h-[98dvh] flex items-center mt-4">
+    <section className="relative bg-linear-210 from-[var(--green-primary)] via-[var(--blue-tertiary)] to-[var(--yellow-secondary)] overflow-hidden h-[98dvh] flex items-center mt-4">
       <div className="absolute inset-0 h-full w-full  bg-[radial-gradient(#1a67ad90_2px,transparent_0.2px)] [background-size:36px_36px]" />
 
       <div className="container relative mx-auto px-4 py-12 md:py-20">
@@ -10,9 +10,11 @@ const Hero = () => {
           <div className="flex flex-col justify-center space-y-6 animate-fade-in-up">
             <h1 className="text-4xl font-bold leading-tight text-white md:text-5xl max-w-[17ch] lg:text-6xl text-balance">
               Alquila con nosotros y<br></br>
-              <span className="text-[#F37513]">vive tu próxima aventura</span>
+              <span className="text-[var(--yellow-secondary)]">
+                vive tu próxima aventura
+              </span>
             </h1>
-            <div className="inline-flex w-max items-center gap-3 rounded-lg bg-[#F37513] px-4 py-3 animate-scale-in">
+            <div className="inline-flex w-max text-white items-center gap-3 rounded-lg bg-[var(--red-quartenary)] px-4 py-3 animate-scale-in">
               <div className="text-2xl font-bold text-accent-foreground">
                 15% OFF
               </div>
@@ -23,7 +25,7 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            <div className="text-card-foreground flex flex-col gap-6 rounded-xl border bg-white p-6 shadow-2xl animate-slide-in-right">
+            <div className="text-card-foreground flex flex-col gap-6 rounded-xl border border-slate-200/80 bg-white p-6 shadow-2xl animate-slide-in-right">
               <div className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
@@ -96,7 +98,7 @@ const Hero = () => {
                     </div>
                   </div>
                 </div>
-                <button className="inline-flex items-center justify-center gap-2 rounded-md transition-all px-4 py-2 w-full bg-[#F37513] h-12 text-base font-semibold cursor-pointer">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md transition-all px-4 py-2 w-full bg-[var(--yellow-secondary)] h-12 text-base font-semibold cursor-pointer">
                   <Search className="size-5" />
                   Buscar Vehículos
                 </button>

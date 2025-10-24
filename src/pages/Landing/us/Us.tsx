@@ -14,18 +14,22 @@ import {
 export default function Us() {
   return (
     <>
-      <div className="bg-blue-900 text-white px-6 py-30 flex flex-col items-center justify-center h-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Sobre AutoRent</h1>
-        <p className="text-center text-lg md:text-xl mb-8 w-[60%]">
-          Somos líderes en alquiler de vehículos con más de 15 años de
-          experiencia brindando el mejor servicio a nuestros clientes.
-        </p>
+      <div className="bg-linear-to-b from-[var(--blue-tertiary)] to-[var(--green-primary)] text-white pb-20 flex flex-col items-end justify-end h-90">
+        <div className="title flex flex-col items-center justify-end w-full">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Sobre AutoRent
+          </h1>
+          <p className="text-center text-lg md:text-xl mb-8 w-[60ch]">
+            Somos líderes en alquiler de vehículos con más de 15 años de
+            experiencia brindando el mejor servicio a nuestros clientes.
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full h-auto bg-neutral-200 items-center justify-center px-10 py-12">
-        <div className="bg-white text-blue-900 p-6 rounded-lg shadow-lg text-center">
+        <div className="bg-white text-[var(--blue-tertiary)] p-6 rounded-lg shadow-lg text-center">
           <div className="flex justify-center mb-2">
-            <span className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
+            <span className="inline-flex items-center justify-center w-12 h-12 bg-[var(--blue-tertiary)]/10 rounded-full">
               <Users className="w-6 h-6" />
             </span>
           </div>
@@ -33,9 +37,9 @@ export default function Us() {
           <p className="text-gray-600">Clientes Satisfechos</p>
         </div>
 
-        <div className="bg-white text-blue-900 p-6 rounded-lg shadow-lg text-center">
+        <div className="bg-white text-[var(--blue-tertiary)] p-6 rounded-lg shadow-lg text-center">
           <div className="flex justify-center mb-2">
-            <span className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
+            <span className="inline-flex items-center justify-center w-12 h-12 bg-[var(--blue-tertiary)]/10 rounded-full">
               <MapPin className="w-6 h-6" />
             </span>
           </div>
@@ -43,9 +47,9 @@ export default function Us() {
           <p className="text-gray-600">Ubicaciones</p>
         </div>
 
-        <div className="bg-white text-blue-900 p-6 rounded-lg shadow-lg text-center">
+        <div className="bg-white text-[var(--blue-tertiary)] p-6 rounded-lg shadow-lg text-center">
           <div className="flex justify-center mb-2">
-            <span className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
+            <span className="inline-flex items-center justify-center w-12 h-12 bg-[var(--blue-tertiary)]/10 rounded-full">
               <Clock className="w-6 h-6" />
             </span>
           </div>
@@ -53,9 +57,9 @@ export default function Us() {
           <p className="text-gray-600">Años de Experiencia</p>
         </div>
 
-        <div className="bg-white text-blue-900 p-6 rounded-lg shadow-lg text-center">
+        <div className="bg-white text-[var(--blue-tertiary)] p-6 rounded-lg shadow-lg text-center">
           <div className="flex justify-center mb-2">
-            <span className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
+            <span className="inline-flex items-center justify-center w-12 h-12 bg-[var(--blue-tertiary)]/10 rounded-full">
               <Star className="w-6 h-6" />
             </span>
           </div>
@@ -64,7 +68,7 @@ export default function Us() {
         </div>
       </div>
 
-      <section className="bg-white text-[#003d74] py-16 px-6">
+      <section className="bg-white text-[var(--blue-tertiary)] py-16 px-6">
         <div className="max-w-5xl mx-auto space-y-12">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
