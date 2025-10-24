@@ -22,10 +22,7 @@ export const routes = [
         path: "offers",
         element: <Offers />,
       },
-      {
-        path: "car-info",
-        element: <IndividualCar/>
-      }
+     
     ],
   },
   {
