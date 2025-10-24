@@ -1,5 +1,5 @@
 import { supabase } from "@/config/supabase/supabase";
-import type { SB_CarForRentModel } from "@/shared/models/carForRent.model";
+import type { SB_CarForRentModel } from "@/shared/models/carForRent/carForRent.model";
 
 export async function supabaseCreateCarForRent(carData: Partial<SB_CarForRentModel>) {
     const { data, error } = await supabase
