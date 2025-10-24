@@ -1,23 +1,23 @@
 const Destinations = () => {
   const destinations = [
     {
-      name: "Quito",
-      img: "https://v0-car-rental-page-seven.vercel.app/galapagos-islands-beach-nature.jpg",
+      name: "Parque de Agua",
+      img: "https://getvico.com/blog/wp-content/uploads/2022/09/Parque-del-Agua.jpg",
       delay: "0s",
     },
     {
-      name: "Guayaquil",
-      img: "https://v0-car-rental-page-seven.vercel.app/cuenca-ecuador-colonial-architecture.jpg",
+      name: "Museo Arte Moderno",
+      img: "https://getvico.com/blog/wp-content/uploads/2022/09/Museo-de-arte-moderno.jpg",
       delay: "0.1s",
     },
     {
-      name: "Cuenca",
+      name: "El Cacique",
       img: "https://v0-car-rental-page-seven.vercel.app/guayaquil-ecuador-waterfront.jpg",
       delay: "0.2s",
     },
     {
-      name: "Galápagos",
-      img: "https://v0-car-rental-page-seven.vercel.app/quito-ecuador-city-mountains.jpg",
+      name: "Panachi",
+      img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/ee/10/69/panachi-largejpg.jpg?w=500&h=400&s=1",
       delay: "0.3s",
     },
   ];
@@ -26,10 +26,10 @@ const Destinations = () => {
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--blue-tertiary)] text-balance">
             Destinos para descubrir
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+          <p className="text-lg text-muted-foreground max-w-2xl text-neutral-500 mx-auto text-pretty">
             Más que alquilar un carro, nosotros cuidamos de tu camino
           </p>
         </div>
@@ -48,7 +48,7 @@ const Destinations = () => {
                   alt={dest.name}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0056A4]/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--blue-tertiary)]/80 to-transparent"></div>
                 <h3 className="absolute bottom-4 left-4 text-2xl font-bold text-white">
                   {dest.name}
                 </h3>
@@ -60,7 +60,7 @@ const Destinations = () => {
         <div className="text-center">
           <button
             data-slot="button"
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all border cursor-pointer h-10 rounded-md px-6 border-[#0056A4] text-[#0056A4] hover:bg-[#0056A4] hover:text-white bg-transparent"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all border cursor-pointer h-10 rounded-md px-6 border-[var(--blue-tertiary)] text-[var(--blue-tertiary)] hover:bg-[var(--blue-tertiary)] hover:text-white bg-transparent"
           >
             Consulta todos los destinos
           </button>

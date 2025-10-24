@@ -15,7 +15,8 @@ export default function Offers() {
 
         <div className="grid md:grid-cols-2 justify-center gap-8 max-w-4xl mx-auto w-full">
           <OfferCard
-            color="orange"
+            headerColor="bg-[var(--yellow-secondary)] !text-black"
+            color="bg-[var(--yellow-secondary)] !text-black"
             icon={<Percent size={48} />}
             title="15% OFF - Nuevos Clientes"
             description="Obtén un 15% de descuento en tu primera reserva. Usa el cupón BIENVENIDO al momento de reservar."
@@ -24,7 +25,8 @@ export default function Offers() {
           />
 
           <OfferCard
-            color="blue"
+            headerColor="bg-[var(--blue-tertiary)]"
+            color="bg-[var(--blue-tertiary)]"
             icon={<Calendar size={48} />}
             title="Alquiler Semanal - 20% OFF"
             description="Alquila por 7 días o más y obtén un 20% de descuento en el total de tu reserva."
@@ -33,7 +35,8 @@ export default function Offers() {
           />
 
           <OfferCard
-            color="orange"
+            headerColor="bg-[var(--yellow-secondary)] !text-black"
+            color="bg-[var(--yellow-secondary)] !text-black"
             icon={<Gift size={40} />}
             title="Fin de Semana Especial"
             description="Reserva de viernes a domingo y obtén el domingo gratis. Válido para todos los vehículos."
@@ -43,7 +46,8 @@ export default function Offers() {
           />
 
           <OfferCard
-            color="blue"
+            headerColor="bg-[var(--blue-tertiary)]"
+            color="bg-[var(--blue-tertiary)]"
             icon={<Star size={40} />}
             title="Upgrade Gratis"
             description="Reserva un vehículo económico y recibe un upgrade gratis a la siguiente categoría, sujeto a disponibilidad."
