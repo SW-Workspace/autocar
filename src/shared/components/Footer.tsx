@@ -2,7 +2,7 @@ import { Car, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#003d74] text-white">
+    <footer className="bg-linear-to-br from-[var(--blue-tertiary)] to-[var(--green-primary)] text-white">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-4">
@@ -46,7 +46,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-lg mb-3">Institucional</h3>
+          <h3 className="font-bold text-lg mb-3 text-[var(--yellow-secondary)]">
+            Institucional
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
               <a href="#" className="hover:underline">
@@ -67,7 +69,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-lg mb-3">Negocios</h3>
+          <h3 className="font-bold text-lg mb-3 text-[var(--yellow-secondary)]">
+            Negocios
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
               <a href="#" className="hover:underline">
@@ -88,7 +92,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-lg mb-3">Contactos</h3>
+          <h3 className="font-bold text-lg mb-3 text-[var(--yellow-secondary)]">
+            Contactos
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>Teléfono: +593 2 123 4567</li>
             <li>Email: info@autorent.com</li>

@@ -6,7 +6,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 bg-[#1966AD] border-b border-b-white/40 w-full text-white font-semibold z-100">
+    <header className="fixed top-0 bg-linear-to-r from-[var(--blue-tertiary)] to-[var(--green-primary)] border-b border-b-white/40 w-full text-white font-semibold z-100">
       <div className="mx-auto flex justify-around items-center p-4">
         <div className="flex gap-2 items-center justify-center text-lg">
           <Car size={30} />
@@ -16,25 +16,39 @@ export default function Header() {
         </div>
 
         <nav className="hidden md:flex gap-6">
-          <Link to="offers" className="hover:text-gray-200 transition">
+          <Link
+            to="offers"
+            className="hover:text-[var(--yellow-secondary)] transition"
+          >
             Ofertas
           </Link>
-          <Link to="about" className="hover:text-gray-200 transition">
+          <Link
+            to="about"
+            className="hover:text-[var(--yellow-secondary)] transition"
+          >
             Empresas
           </Link>
-          <Link to="about" className="hover:text-gray-200 transition">
+          <Link
+            to="about"
+            className="hover:text-[var(--yellow-secondary)] transition"
+          >
             Nosotros
           </Link>
-          <Link to="contact" className="hover:text-gray-200 transition">
+          <Link
+            to="contact"
+            className="hover:text-[var(--yellow-secondary)] transition"
+          >
             Contacto
           </Link>
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-2">
-            <User size={18} />
-            <Link to="/auth/login">Iniciar sesión</Link>
-          </div>
+          <Link to="/auth/login">
+            <button className="hidden cursor-pointer md:flex items-center gap-2 hover:bg-[var(--yellow-secondary)] hover:text-[var(--blue-tertiary)] transition p-2 rounded-md">
+              <User size={18} />
+              Iniciar sesión
+            </button>
+          </Link>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
