@@ -1,4 +1,4 @@
-import { CircleCheck, CircleX, Phone, Check } from "lucide-react";
+import { CircleCheck, CircleX, Check } from "lucide-react";
 
 interface TechnicalDetailsProps {
   details: string;
