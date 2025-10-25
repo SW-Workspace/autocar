@@ -77,7 +77,7 @@ export async function supabaseGetRentalsByStartDate(date: string) {
         .from('rentals')
         .select('*')
         .gte('start_date', `${date}T00:00:00`)
-        .lte('start_date', '`${date}T23:59:59`')
+        .lte('start_date', `${date}T23:59:59`)
         .single();
     
     if (error) throw new Error(error.message);
