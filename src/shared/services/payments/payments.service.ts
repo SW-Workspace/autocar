@@ -72,7 +72,7 @@ export async function supabaseGetPaymentByStatus(status: 'pendiente' | 'pagado' 
 }
 
 
-export async function supabaseGetRentalsByStartDate(date: string) {
+export async function supabaseGetRentalsByPaidAt(date: string) {
     const {data, error} = await supabase
         .from('payments')
         .select('*')
@@ -87,7 +87,7 @@ export async function supabaseGetRentalsByStartDate(date: string) {
 
 export async function supabaseUpdatePaymentById(paymentId: number, updates: Partial<SB_PaymentsModel>) {
     const { data, error } = await supabase
-        .from('paymentId')
+        .from('payments')
         .update(updates)
         .eq('id', paymentId)
         .select('*')
