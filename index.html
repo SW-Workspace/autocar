@@ -2,10 +2,120 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autocar</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="WillCar" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <title>Alquiler de Carros en Bucaramanga | Autos Baratos</title>
+    <meta
+      name="description"
+      content="Alquila el auto perfecto en Bucaramanga, Colombia, al mejor precio. ¡Flota moderna, seguros incluidos y soporte 24/7! Reserva fácil y rápido con WillCar."
+    />
+    <link
+      rel="canonical"
+      href="[URL_CANÓNICA_DE_LA_PÁGINA_PRINCIPAL_DE_WILLCAR]"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="alquiler de autos bucaramanga, renta de carros bucaramanga, willcar, autos en alquiler colombia, aeropuerto palonegro"
+    />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WillCar - Alquiler de Autos" />
+    <meta
+      property="og:title"
+      content="Alquiler de Carros en Bucaramanga - WillCar | Reserva Rápido"
+    />
+    <meta
+      property="og:description"
+      content="Alquila el auto perfecto en Bucaramanga, Colombia, al mejor precio. ¡Flota moderna, seguros incluidos y soporte 24/7! Reserva fácil y rápido con WillCar."
+    />
+    <meta property="og:url" content="https://autocar-six.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://autocar-six.vercel.app/og-image-willcar.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Alquiler de Carros en Bucaramanga | WillCar"
+    />
+    <meta
+      name="twitter:description"
+      content="Flota moderna y soporte 24/7. Alquila tu auto en Bucaramanga, Colombia, al mejor precio con WillCar. ¡Reserva en línea!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://autocar-six.vercel.app/og-image-willcar.png"
+    />
     <link rel="stylesheet" href="./src/index.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "AutoRental",
+            "@id": "https://autocar-six.vercel.app/#rental_company",
+            "name": "WillCar - Alquiler de Autos en Bucaramanga",
+            "description": "WillCar es una empresa de alquiler de vehículos en Bucaramanga, Colombia, con flota moderna, precios competitivos y atención al cliente 24/7.",
+            "url": "https://autocar-six.vercel.app/",
+            "logo": "https://autocar-six.vercel.app/favicon/favicon.ico",
+            "image": "https://autocar-six.vercel.app/og-image-willcar.png",
+            "areaServed": {
+              "@type": "City",
+              "name": "Bucaramanga"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "08:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Saturday", "Sunday"],
+                "opens": "09:00",
+                "closes": "14:00"
+              }
+            ]
+          },
+          {
+            "@type": "Service",
+            "serviceType": "Alquiler de Vehículos",
+            "provider": {
+              "@type": "AutoRental",
+              "name": "WillCar"
+            },
+            "areaServed": {
+              "@type": "City",
+              "name": "Bucaramanga"
+            },
+            "name": "Servicio de Alquiler de Autos en Bucaramanga",
+            "description": "Alquiler de carros económicos, sedanes, camionetas y vehículos de lujo en Bucaramanga y el área metropolitana."
+          }
+        ]
+      }
+    </script>
   </head>
   <body class="font-inter">
     <div id="root"></div>

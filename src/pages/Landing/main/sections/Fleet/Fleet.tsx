@@ -5,6 +5,7 @@ import { Zap } from "lucide-react";
 export default function Fleet() {
   const data = [
     {
+      id: 1,
       image:
         "https://v0-car-rental-page-seven.vercel.app/compact-economy-car-silver.jpg",
       price: 35,
@@ -15,6 +16,7 @@ export default function Fleet() {
       type: "Manual",
     },
     {
+      id: 2,
       image:
         "https://v0-car-rental-page-seven.vercel.app/compact-suv-white-modern.jpg",
       price: 55,
@@ -26,6 +28,7 @@ export default function Fleet() {
       type: "Automática",
     },
     {
+      id: 3,
       image:
         "https://v0-car-rental-page-seven.vercel.app/sedan-car-red-modern.jpg",
       price: 65,
@@ -54,10 +57,11 @@ export default function Fleet() {
         </div>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12 w-7xl mx-auto">
+      <div className="grid gap-8 mb-12 w-7xl mx-auto max-2xl:w-5xl grid-cols-3 max-lg:grid-cols-2 max-lg:w-full max-md:grid-cols-1">
         {data.map((car, i) => (
           <CarCard
             key={i}
+            id={car.id}
             image={car.image}
             price={car.price}
             popular={car.popular || false}

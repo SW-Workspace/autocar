@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Car, User, Menu, X } from "lucide-react";
+import { User, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -7,11 +7,11 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 bg-linear-to-r from-[var(--blue-tertiary)] to-[var(--green-primary)] border-b border-b-white/40 w-full text-white font-semibold z-100">
-      <div className="mx-auto flex justify-around items-center p-4">
+      <div className="mx-auto flex justify-around items-center p-4 max-md:justify-between">
         <div className="flex gap-2 items-center justify-center text-lg">
-          <Car size={30} />
+          <img src="/favicon/favicon-96x96.png" className="rounded-full w-10" />
           <Link to="/" className="font-bold">
-            AutoRent
+            WillCar
           </Link>
         </div>
 
@@ -23,7 +23,7 @@ export default function Header() {
             Ofertas
           </Link>
           <Link
-            to="about"
+            to="business"
             className="hover:text-[var(--yellow-secondary)] transition"
           >
             Empresas
@@ -61,14 +61,17 @@ export default function Header() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-[#004a8a] px-6 py-4 flex flex-col gap-4 text-sm border-t border-white/20">
-          <a href="#" className="hover:text-gray-200 transition">
+        <div className="md:hidden bg-[var(--blue-tertiary)] px-6 py-4 flex flex-col gap-4 text-sm border-t border-white/20">
+          <Link to="offers" className="hover:text-gray-200 transition">
             Ofertas
-          </a>
-          <a href="#" className="hover:text-gray-200 transition">
+          </Link>
+          <Link to="business" className="hover:text-gray-200 transition">
+            Empresas
+          </Link>
+          <Link to="about" className="hover:text-gray-200 transition">
             Nosotros
-          </a>
-          <Link to="/contact" className="hover:text-gray-200 transition">
+          </Link>
+          <Link to="contact" className="hover:text-gray-200 transition">
             Contacto
           </Link>
           <div className="flex items-center gap-2 pt-2 border-t border-white/10">

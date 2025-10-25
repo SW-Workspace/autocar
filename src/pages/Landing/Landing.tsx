@@ -11,7 +11,7 @@ export default function Landing() {
     <>
       <div className="bg-slate-100 min-h-dvh flex flex-col relative">
         <Header />
-        <div className="flex-1">
+        <div className="flex-1 mt-10">
           <div className="whatsapp-button fixed z-10 bottom-4 right-4">
             <button className="cursor-pointer">
               <svg

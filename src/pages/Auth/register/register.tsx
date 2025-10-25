@@ -54,7 +54,7 @@ export default function Register() {
   }
 
   return (
-    <section className="h-dvh relative bg-gradient-to-br from-[var(--green-primary)] text-gray-800 to-[var(--blue-tertiary)] flex justify-center items-center p-4">
+    <section className="min-h-dvh relative bg-gradient-to-br from-[var(--green-primary)] text-gray-800 to-[var(--blue-tertiary)] flex justify-center items-center p-4">
       <Link
         to="/"
         className="flex items-center gap-2 font-semibold text-sm justify-center absolute left-4 top-4 text-white"
@@ -62,11 +62,11 @@ export default function Register() {
         <ArrowLeft className="size-4" />
         Regresar
       </Link>
-      <div className="bg-white rounded-lg shadow-lg w-sm md:w-md lg:w-lg p-6">
+      <div className="bg-white rounded-lg shadow-lg w-sm md:w-md lg:w-lg p-6 max-sm:mt-8">
         <div className="text-center mb-6">
           <h1 className="text-xl font-bold text-[#003d74]">Registrase</h1>
           <p className="text-gray-600 text-sm mt-1">
-            Crea tu cuenta de AutoCard
+            Crea tu cuenta de WillCar
           </p>
         </div>
 

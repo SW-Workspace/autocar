@@ -1,8 +1,8 @@
 import { Calendar, Clock, MapPin, Search } from "lucide-react";
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <section className="relative bg-linear-210 from-[var(--green-primary)] via-[var(--blue-tertiary)] to-[var(--yellow-secondary)] overflow-hidden h-[98dvh] flex items-center mt-4">
+    <section className="relative bg-linear-210 from-[var(--green-primary)] via-[var(--blue-tertiary)] to-[var(--yellow-secondary)] overflow-hidden min-h-[98dvh] flex items-center mt-4">
       <div className="absolute inset-0 h-full w-full  bg-[radial-gradient(#1a67ad90_2px,transparent_0.2px)] [background-size:36px_36px]" />
 
       <div className="container relative mx-auto px-4 py-12 md:py-20">
@@ -25,7 +25,7 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            <div className="text-card-foreground flex flex-col gap-6 rounded-xl border border-slate-200/80 bg-white p-6 shadow-2xl animate-slide-in-right">
+            <div className="text-card-foreground flex flex-col gap-6 rounded-xl border border-slate-200/80 bg-white/20 backdrop-blur-xl p-6 shadow-2xl animate-slide-in-right">
               <div className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
@@ -36,13 +36,13 @@ const Hero = () => {
                       Lugar de recogida
                     </label>
                     <div className="relative">
-                      <MapPin className="absolute text-slate-300 bottom-2.5 left-1.5 size-5" />
+                      <MapPin className="absolute text-neutral-800 bottom-2.5 left-1.5 size-5" />
                       <input
                         type="text"
                         name="city"
                         id="city"
                         placeholder="Ciudad, Aeropuerto..."
-                        className="outline-0 rounded-md placeholder:text-slate-300 border border-slate-100 px-2 pl-8 h-10 w-full"
+                        className="outline-0 rounded-md placeholder:text-neutral-800 border border-black px-2 pl-8 h-10 w-full"
                       />
                     </div>
                   </div>
@@ -54,12 +54,12 @@ const Hero = () => {
                       Fecha de recogida
                     </label>
                     <div className="relative">
-                      <Calendar className="absolute bottom-2.5 size-5 left-2 text-slate-300" />
+                      <Calendar className="absolute bottom-2.5 size-5 left-2 text-neutral-800" />
                       <input
                         type="date"
                         name="date-collection"
                         id="date-collection"
-                        className="outline-0 rounded-md placeholder:text-slate-300 border border-slate-100 px-2 pl-8 h-10 w-full"
+                        className="outline-0 rounded-md placeholder:text-neutral-800 border border-black px-2 pl-8 h-10 w-full"
                       />
                     </div>
                   </div>
@@ -71,12 +71,12 @@ const Hero = () => {
                       Hora
                     </label>
                     <div className="relative">
-                      <Clock className="text-slate-300 size-5 absolute bottom-2.5 left-2" />
+                      <Clock className="text-neutral-800 size-5 absolute bottom-2.5 left-2" />
                       <input
                         type="time"
                         name="time"
                         id="time"
-                        className="outline-0 rounded-md placeholder:text-slate-300 border border-slate-100 px-2 pl-8 h-10 w-full"
+                        className="outline-0 rounded-md placeholder:text-neutral-800 border border-black px-2 pl-8 h-10 w-full"
                       />
                     </div>
                   </div>
@@ -88,12 +88,12 @@ const Hero = () => {
                       Fecha de devolución
                     </label>
                     <div className="relative">
-                      <Calendar className="text-slate-300 absolute size-5 bottom-2.5 left-2" />
+                      <Calendar className="text-neutral-800 absolute size-5 bottom-2.5 left-2" />
                       <input
                         type="date"
                         name="date-return"
                         id="date-return"
-                        className="outline-0 rounded-md placeholder:text-slate-300 border border-slate-100 px-2 pl-8 h-10 w-full"
+                        className="outline-0 rounded-md placeholder:text-neutral-800 border border-black px-2 pl-8 h-10 w-full"
                       />
                     </div>
                   </div>
@@ -110,6 +110,7 @@ const Hero = () => {
               <img
                 src="https://v0-car-rental-page-seven.vercel.app/happy-person-driving-modern-car.jpg"
                 alt="Foto como ejemplo"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0056A4]/50 to-transparent"></div>
             </div>
@@ -118,6 +119,4 @@ const Hero = () => {
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

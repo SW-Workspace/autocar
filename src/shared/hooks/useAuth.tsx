@@ -13,6 +13,7 @@ export interface AuthContextType {
   session: Session | null;
   token: string | null;
   isAuthenticated: boolean;
+  loading: boolean;
 
   // INFO: Functions
   supabaseSignUpUser: (signUpInfo: Partial<SignType>) => Promise<{
@@ -36,76 +37,114 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<AuthContextType["user"]>(null);
   const [session, setSession] = useState<AuthContextType["session"]>(null);
   const [token, setToken] = useState<AuthContextType["token"]>(null);
+  const [loading, setLoading] = useState(false);
 
   const isAuthenticated = session !== null && token !== null;
 
   const supabaseSignUpUser = async (signUpInfo: Partial<SignType>) => {
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-      email: signUpInfo.email!,
-      password: signUpInfo.password!,
-    });
+    try {
+      setLoading(true);
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: signUpInfo.email!,
+        password: signUpInfo.password!,
+      });
 
-    if (authError) throw new Error(authError.message);
+      if (authError) {
+        alert(authError.message);
+        throw new Error(authError.message);
+      }
 
-    const { data: userData, error: insertError } = await supabase
-      .from("users")
-      .insert([
-        {
-          first_name: signUpInfo.first_name,
-          last_name: signUpInfo.last_name,
-          email: signUpInfo.email,
-          phone: signUpInfo.phone,
-          rol: "user",
-        },
-      ]);
+      const { data: userData, error: insertError } = await supabase
+        .from("users")
+        .insert([
+          {
+            first_name: signUpInfo.first_name,
+            last_name: signUpInfo.last_name,
+            email: signUpInfo.email,
+            phone: signUpInfo.phone,
+            rol: "user",
+          },
+        ]);
 
-    if (insertError) throw new Error(insertError.message);
+      if (insertError) {
+        alert(insertError.message);
+        throw new Error(insertError.message);
+      }
 
-    setUser(authData.session?.user!);
-    setSession(authData.session);
-    setToken(authData.session?.access_token!);
+      setUser(authData.session?.user!);
+      setSession(authData.session);
+      setToken(authData.session?.access_token!);
 
-    return { auth: authData, user: userData };
+      alert("Se ha enviado un correo de confirmación");
+
+      return { auth: authData, user: userData };
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const supabaseSignInWithEmail = async (
     signInInfo: Pick<SignType, "email" | "password">,
   ) => {
-    const { data: userData, error: userError } = await supabase
-      .from("users")
-      .select("*")
-      .eq("email", signInInfo.email)
-      .maybeSingle();
+    try {
+      const { data: userData, error: userError } = await supabase
+        .from("users")
+        .select("*")
+        .eq("email", signInInfo.email)
+        .maybeSingle();
 
-    if (userError) throw Error(userError.message);
+      if (userError) {
+        alert(userError.message);
+        throw Error(userError.message);
+      }
 
-    if (!userData) {
-      console.log("Este usuario no existe", userData);
-      return { error: "Este usuario no existe en la base de datos" };
+      if (!userData) {
+        alert("Este usuario no existe");
+        console.log("Este usuario no existe", userData);
+        return { error: "Este usuario no existe en la base de datos" };
+      }
+
+      const { data: authData, error: authError } =
+        await supabase.auth.signInWithPassword({
+          email: signInInfo.email,
+          password: signInInfo.password,
+        });
+
+      if (authError) {
+        alert(authError.message);
+        throw new Error(authError.message);
+      }
+
+      setUser(userData.session?.user);
+      setSession(userData.session);
+      setToken(userData.session?.token);
+
+      return { auth: authData.session, user: userData };
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      setLoading(false);
     }
-
-    const { data: authData, error: authError } =
-      await supabase.auth.signInWithPassword({
-        email: signInInfo.email,
-        password: signInInfo.password,
-      });
-
-    if (authError) throw new Error(authError.message);
-
-    setUser(userData.session?.user);
-    setSession(userData.session);
-    setToken(userData.session?.token);
-
-    return { auth: authData.session, user: userData };
   };
 
   const supabaseCloseSession = async () => {
-    const { error: outError } = await supabase.auth.signOut();
-    if (outError) throw new Error(outError.message);
+    try {
+      const { error: outError } = await supabase.auth.signOut();
+      if (outError) throw new Error(outError.message);
 
-    setUser(null);
-    setSession(null);
-    setToken(null);
+      setUser(null);
+      setSession(null);
+      setToken(null);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -115,6 +154,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         session,
         token,
         isAuthenticated,
+        loading,
         supabaseSignUpUser,
         supabaseSignInWithEmail,
         supabaseCloseSession,

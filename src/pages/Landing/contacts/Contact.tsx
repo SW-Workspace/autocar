@@ -5,7 +5,7 @@ export default function Contact() {
     <>
       <div className="contact-container min-h-dvh flex flex-col items-center gap-24 p-6 mt-16">
         <div className="contact-info flex flex-col items-center justify-center gap-4">
-          <h1 className="font-bold text-5xl leading-normal text-[var(--blue-tertiary)]">
+          <h1 className="font-bold text-5xl leading-normal text-[var(--blue-tertiary)] max-xl:text-4xl">
             Contáctanos
           </h1>
           <p className="text-slate-600 text-lg max-w-[60ch] mx-auto text-center">
@@ -13,9 +13,9 @@ export default function Contact() {
             lo antes posible.
           </p>
         </div>
-        <div className="contact-grid flex justify-center *:w-1/2 gap-8 w-full px-24">
+        <div className="contact-grid flex justify-center *:w-1/2 gap-8 w-full px-24 max-2xl:px-10 max-xl:px-4 max-lg:flex-col max-lg:items-center max-lg:*:w-full">
           <div className="message-container bg-white w-full flex flex-col gap-4 border-slate-200 p-8 shadow shadow-neutral-200/50 h-full rounded-2xl">
-            <h2 className="font-bold text-3xl text-[var(--blue-tertiary)]">
+            <h2 className="font-bold text-3xl max-xl:text-2xl text-[var(--blue-tertiary)]">
               Envíanos un Mensaje
             </h2>
             <div className="name-and-lastname flex items-center gap-4 *:w-1/2 justify-between w-full">
@@ -67,7 +67,7 @@ export default function Contact() {
             </button>
           </div>
           <div className="contact-info flex flex-col gap-8">
-            <h3 className="font-bold text-2xl text-[var(--blue-tertiary)]">
+            <h3 className="font-bold text-2xl text-[var(--blue-tertiary)] max-xl:text-xl">
               Información de Contacto
             </h3>
             {[1, 2, 3, 4].map((_, i) => (
@@ -89,7 +89,7 @@ export default function Contact() {
           </div>
         </div>
         <div className="map-container w-full">
-          <div className="map w-5xl mx-auto rounded-md border border-slate-200/20">
+          <div className="map max-w-5xl mx-auto rounded-md border border-slate-200/20">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d453.8092443026623!2d-73.12309866195122!3d7.119121206519065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e68157af751c0ed%3A0x75a0e4551148c36c!2sBucaramanga%2C%20Santander%2C%20Colombia!5e0!3m2!1sen!2sec!4v1761273237550!5m2!1sen!2sec"
               className="w-full rounded-lg"
