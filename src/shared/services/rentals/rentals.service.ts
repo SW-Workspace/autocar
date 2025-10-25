@@ -99,11 +99,10 @@ export async function supabaseUpdateRentalById(rentalId: number, updates: Partia
 
 
 export async function supabaseDeleteRentalsById(rentalId: number) {
-    const {data, error} = await supabase
+    const {error} = await supabase
         .from('rentals')
         .delete()
         .eq('id', rentalId);
     
     if (error) throw new Error(error.message);
-    return data;  
 }
