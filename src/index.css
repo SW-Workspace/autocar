@@ -14,3 +14,24 @@
 @theme {
   --font-inter: "Inter", system-ui;
 }
+
+::selection {
+  background-color: var(--green-primary);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  background-color: #003d74;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue-tertiary);
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--blue-tertiary);
+}
+
+::-webkit-scrollbar-track {
+  background: #003d74;
+  border-radius: 10px;
+}

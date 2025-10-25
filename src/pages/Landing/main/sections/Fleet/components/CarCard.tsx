@@ -1,6 +1,8 @@
 import { Gauge, Luggage, User } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export interface CardCarProps {
+  id: number;
   image: string;
   popular?: boolean;
   price: number;
@@ -61,11 +63,13 @@ export default function CarCard(props: CardCarProps) {
         </div>
 
         <div className="flex items-center [.border-t]:pt-6 p-6 pt-0">
-          <button
-            className={`inline-flex items-center justify-center gap-2 rounded-md text-sm transition-all h-9 px-4 py-2 w-full ${props.popular ? "bg-[var(--green-primary)] text-white" : "bg-[var(--yellow-secondary)]"} font-semibold cursor-pointer`}
-          >
-            Reservar Ahora
-          </button>
+          <Link to={`/vehicles/${props.id}`} className="w-full">
+            <button
+              className={`inline-flex items-center justify-center gap-2 rounded-md text-sm transition-all h-9 px-4 py-2 w-full ${props.popular ? "bg-[var(--green-primary)] text-white" : "bg-[var(--yellow-secondary)]"} font-semibold cursor-pointer`}
+            >
+              Reservar Ahora
+            </button>
+          </Link>
         </div>
       </div>
     </>

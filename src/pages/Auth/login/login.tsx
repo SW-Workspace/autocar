@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import { ArrowLeft } from "lucide-react";
 import { useAuth, type SignType } from "@/shared/hooks/useAuth";
 
 export default function Login() {
-  const { supabaseSignInWithEmail } = useAuth();
+  const { supabaseSignInWithEmail, isAuthenticated, loading } = useAuth();
 
   const [form, setForm] = useState<Pick<SignType, "email" | "password">>({
     email: "",
@@ -14,6 +14,7 @@ export default function Login() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
@@ -27,11 +28,8 @@ export default function Login() {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const res = await supabaseSignInWithEmail(form);
-      console.log(res);
-      setTimeout(() => {
-        navigate("/");
-      }, 30000);
+      await supabaseSignInWithEmail(form);
+      setForm({ email: "", password: "" });
     } catch (error) {
       console.error(error);
       throw error;
@@ -40,12 +38,19 @@ export default function Login() {
     }
   };
 
+  useEffect(() => {
+    if (isAuthenticated && !loading) {
+      const from = location.state?.from?.pathname || "/dashboard/inicio";
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, location]);
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
   return (
-    <section className="h-dvh relative bg-gradient-to-br from-[var(--green-primary)] to-[var(--blue-tertiary)] flex justify-center items-center p-4">
+    <section className="min-h-dvh relative bg-gradient-to-br from-[var(--green-primary)] to-[var(--blue-tertiary)] flex justify-center items-center p-4">
       <Link
         to="/"
         className="flex items-center font-semibold gap-2 text-sm justify-center absolute left-4 top-4 text-white"
@@ -56,7 +61,7 @@ export default function Login() {
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-[#003d74]">Iniciar Sesión</h1>
-          <p className="text-gray-600 mt-2">Accede a tu cuenta de AutoRent</p>
+          <p className="text-gray-600 mt-2">Accede a tu cuenta de WillCar</p>
         </div>
 
         <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>

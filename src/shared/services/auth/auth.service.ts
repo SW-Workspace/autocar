@@ -12,7 +12,7 @@ export async function supabaseGetUserById(userId: Pick<SB_UserModel, "id">) {
   return userData;
 }
 
-export async function supabaseGetUserAll() {
+export async function supabaseGetAllUsers() {
   const { data: userData, error: userError } = await supabase
     .from("users")
     .select("*")

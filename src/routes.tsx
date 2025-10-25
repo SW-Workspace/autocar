@@ -5,6 +5,12 @@ import Offers from "./pages/Landing/offers/Offers";
 import Login from "./pages/Auth/login/login";
 import Register from "./pages/Auth/register/register";
 import IndividualCar from "./pages/Landing/individualCar/IndividualCar";
+import Business from "./pages/Landing/business/Business";
+import ProtectedRoutes from "./pages/Auth/components/ProtectedRoutes";
+import Overview from "./pages/Main/overview/Overview";
+import Main from "./pages/Main/Main";
+import Cars from "./pages/Main/cars/Cars";
+import Settings from "./pages/Main/settings/Settings";
 
 export const routes = [
   {
@@ -16,6 +22,10 @@ export const routes = [
         element: <Us />,
       },
       {
+        path: "business",
+        element: <Business />,
+      },
+      {
         path: "contact",
         element: <Contact />,
       },
@@ -25,9 +35,8 @@ export const routes = [
       },
       {
         path: "vehicles/:id",
-        element:<IndividualCar/>
-      }
-     
+        element: <IndividualCar />,
+      },
     ],
   },
   {
@@ -35,12 +44,35 @@ export const routes = [
     children: [
       {
         path: "login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "register",
-        element: <Register />
+        element: <Register />,
       },
-    ]
-  }
+    ],
+  },
+  {
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Main />,
+        children: [
+          {
+            path: "inicio",
+            element: <Overview />,
+          },
+          {
+            path: "autos",
+            element: <Cars />,
+          },
+          {
+            path: "ajustes",
+            element: <Settings />,
+          },
+        ],
+      },
+    ],
+  },
 ];
