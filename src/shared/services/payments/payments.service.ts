@@ -1,11 +1,11 @@
 import { supabase } from "@/config/supabase/supabase";
-import type SB_RentalsModel from "@/shared/models/rentals/rentals.model";
+import type SB_PaymentsModel from "@/shared/models/payments/payments.model";
 
 
-export async function supabaseCreateRentals(rentalData: Partial<SB_RentalsModel>) {
+export async function supabaseCreatePayments(paymentData: Partial<SB_PaymentsModel>) {
     const {data, error} = await supabase
-        .from('rentals')
-        .insert(rentalData)
+        .from('payment')
+        .insert(paymentData)
         .select('*')
         .single();
    
@@ -14,21 +14,21 @@ export async function supabaseCreateRentals(rentalData: Partial<SB_RentalsModel>
 }
 
 
-export async function supabaseGetAllRentals() {
-    const {data:rentalsData, error:rentalsError} = await supabase
-        .from('rentals')
+export async function supabaseGetAllPayments(){
+    const {data:paymentData, error:paymentError} = await supabase
+        .from('payments')
         .select('*');
     
-    if (rentalsError) throw new Error(rentalsError.message);
-    return rentalsData || [];
+    if (paymentError) throw new Error(paymentError.message);
+    return paymentData || [];
 }
 
 
-export async function supabaseGetRentalsById(rentalId: number) {
+export async function supabaseGetPaymentById(paymentId: number) {
     const {data, error} = await supabase
-        .from('rentals')
+        .from('payments')
         .select('*')
-        .eq('id', rentalId)
+        .eq('id', paymentId)
         .single();
     
     if (error) throw new Error(error.message);
@@ -36,11 +36,11 @@ export async function supabaseGetRentalsById(rentalId: number) {
 }
 
 
-export async function supabaseGetRentalsByRenterId(renterId: number) {
+export async function supabaseGetPaymentByRentalId(rentalId: number) {
     const {data, error} = await supabase
-        .from('rentals')
+        .from('payments')
         .select('*')
-        .eq('renter_id', renterId)
+        .eq('rental_id', rentalId)
         .single();
     
     if (error) throw new Error(error.message);
@@ -48,11 +48,11 @@ export async function supabaseGetRentalsByRenterId(renterId: number) {
 }
 
 
-export async function supabaseGetRentalsByOwnerId(ownerId: number) {
+export async function supabaseGetPaymentByMethod(method: 'tarjeta' | 'transferencia') {
     const {data, error} = await supabase
-        .from('rentals')
+        .from('payments')
         .select('*')
-        .eq('owner_id', ownerId)
+        .eq('method', method)
         .single();
     
     if (error) throw new Error(error.message);
@@ -60,9 +60,9 @@ export async function supabaseGetRentalsByOwnerId(ownerId: number) {
 }
 
 
-export async function supabaseGetRentalsByStatus(status: 'pendiente' | 'en curso' | 'finalizado' | 'cancelado') {
+export async function supabaseGetPaymentByStatus(status: 'pendiente' | 'pagado' | 'fallido') {
     const {data, error} = await supabase
-        .from('rentals')
+        .from('payments')
         .select('*')
         .eq('status', status)
         .single();
@@ -74,10 +74,10 @@ export async function supabaseGetRentalsByStatus(status: 'pendiente' | 'en curso
 
 export async function supabaseGetRentalsByStartDate(date: string) {
     const {data, error} = await supabase
-        .from('rentals')
+        .from('payments')
         .select('*')
-        .gte('start_date', `${date}T00:00:00`)
-        .lte('start_date', `${date}T23:59:59`)
+        .gte('paid_at', `${date}T00:00:00`)
+        .lte('paid_at', `${date}T23:59:59`)
         .single();
     
     if (error) throw new Error(error.message);
@@ -85,11 +85,11 @@ export async function supabaseGetRentalsByStartDate(date: string) {
 }
 
 
-export async function supabaseUpdateRentalById(rentalId: number, updates: Partial<SB_RentalsModel>) {
+export async function supabaseUpdatePaymentById(paymentId: number, updates: Partial<SB_PaymentsModel>) {
     const { data, error } = await supabase
-        .from('rentals')
+        .from('paymentId')
         .update(updates)
-        .eq('id', rentalId)
+        .eq('id', paymentId)
         .select('*')
         .single();
 
@@ -98,11 +98,11 @@ export async function supabaseUpdateRentalById(rentalId: number, updates: Partia
 };
 
 
-export async function supabaseDeleteRentalsById(rentalId: number) {
+export async function supabaseDeleteRentalsById(paymentId: number) {
     const {error} = await supabase
-        .from('rentals')
+        .from('payments')
         .delete()
-        .eq('id', rentalId);
+        .eq('id', paymentId);
     
     if (error) throw new Error(error.message);
 }
