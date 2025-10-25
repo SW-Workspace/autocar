@@ -16,4 +16,16 @@ export interface SB_CarForRentModel {
   rental_duraction_days?: number;
   details?: string;
   created_at?: string;
+  car_doors: number;
+  air_conditioning?: boolean;
+  power_steering?: boolean;
+  front_airbags?: boolean;
+  radio?: boolean;
+  central_locking?: boolean;
+  abs?: boolean;
+  fuel_consumption: string;
+  engine: string;
+  tank_capacity: number;
+  trunk_capacity: number;
+  url_img: string;
 }
