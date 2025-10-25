@@ -60,7 +60,7 @@ export async function supabaseGetRentalsByOwnerId(ownerId: number) {
 }
 
 
-export async function supabaseGetRentalsByStatus(status: string) {
+export async function supabaseGetRentalsByStatus(status: 'pendiente' | 'en curso' | 'finalizado' | 'cancelado') {
     const {data, error} = await supabase
         .from('rentals')
         .select('*')
