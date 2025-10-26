@@ -1,15 +1,6 @@
-import {
-  Users,
-  MapPin,
-  Clock,
-  Star,
-  ShieldCheck,
-  Award,
-  Lightbulb,
-  Handshake,
-  ClipboardCheck,
-  Eye,
-} from "lucide-react";
+import Hero from "./components/Hero";
+import Statistics from "./components/Statistics";
+import Beginning from "./components/Beginning";
 
 export default function Us() {
   return (
