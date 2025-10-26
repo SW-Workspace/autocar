@@ -12,7 +12,6 @@ export default function Offers() {
           Aprovecha nuestras promociones exclusivas y ahorra en tu próximo
           alquiler
         </p>
-
         <div className="grid md:grid-cols-2 justify-center gap-8 max-w-4xl mx-auto w-full">
           {offersData.map((data) =>(
             <OfferCard
@@ -24,7 +23,6 @@ export default function Offers() {
               valid={data.valid}
             />
           ))}
-
         </div>
       </div>
     </section>

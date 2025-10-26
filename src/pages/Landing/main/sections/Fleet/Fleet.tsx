@@ -1,8 +1,11 @@
+import { Badge } from "@/shared/components/ui/Badge";
 import CarCard from "./components/CarCard";
+import { Zap } from "lucide-react";
 
 export default function Fleet() {
   const data = [
     {
+      id: 1,
       image:
         "https://v0-car-rental-page-seven.vercel.app/compact-economy-car-silver.jpg",
       price: 35,
@@ -13,16 +16,19 @@ export default function Fleet() {
       type: "Manual",
     },
     {
+      id: 2,
       image:
         "https://v0-car-rental-page-seven.vercel.app/compact-suv-white-modern.jpg",
       price: 55,
       name: "Grupo SUV Compacto",
       related: "Nissan Kick, Hyundai Creta",
       passengers: 5,
+      popular: true,
       suitcases: 3,
       type: "Automática",
     },
     {
+      id: 3,
       image:
         "https://v0-car-rental-page-seven.vercel.app/sedan-car-red-modern.jpg",
       price: 65,
@@ -30,7 +36,7 @@ export default function Fleet() {
       related: "Toyota Corolla, Honda Civic",
       passengers: 5,
       suitcases: 3,
-      type: "Automática"
+      type: "Automática",
     },
   ];
 
@@ -38,21 +44,27 @@ export default function Fleet() {
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl md:text-4xl text-[var(--blue-tertiary)] font-bold text-foreground text-balance">
             Conoce nuestra flota
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-neutral-500">
             Las mejores opciones para que reserves y aproveches
           </p>
+          <Badge color="bg-[var(--red-quartenary)] text-white">
+            <Zap />
+            ¡Ofertas Especiales Disponibles!
+          </Badge>
         </div>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12 w-7xl mx-auto">
+      <div className="grid gap-8 mb-12 w-7xl mx-auto max-2xl:w-5xl grid-cols-3 max-lg:grid-cols-2 max-lg:w-full max-md:grid-cols-1">
         {data.map((car, i) => (
-        <CarCard
+          <CarCard
             key={i}
+            id={car.id}
             image={car.image}
             price={car.price}
+            popular={car.popular || false}
             name={car.name}
             related={car.related}
             passengers={car.passengers}
@@ -62,7 +74,7 @@ export default function Fleet() {
         ))}
       </div>
       <div className="text-center">
-        <button className="items-center justify-center gap-2 cursor-pointer text-sm font-medium transition-all border shadow-xs h-10 rounded-md px-6  border-[#0056A4] text-[#0056A4] hover:bg-[#0056A4] hover:text-white bg-transparent">
+        <button className="items-center justify-center gap-2 cursor-pointer text-sm font-medium transition-all border shadow-xs h-10 rounded-md px-6  border-[var(--blue-tertiary)] text-[var(--blue-tertiary)] hover:bg-[var(--blue-tertiary)] hover:text-white bg-transparent">
           Ver todos los grupos
         </button>
       </div>

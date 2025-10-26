@@ -2,11 +2,18 @@ import { Calendar } from "lucide-react";
 import type { OfferItem } from "../data/offersData";
 import type { ReactNode } from "react";
 
-interface OfferCardProps extends Omit<OfferItem, "icon"> {
-  icon: ReactNode;
-}
+interface OfferCardProps {
+  headerColor?: string;
+  color?: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  code: string;
+  valid: string;
+  small?: boolean;
 
 export default function OfferCard({
+  headerColor,
   color,
   icon,
   title,
@@ -15,13 +22,6 @@ export default function OfferCard({
   valid,
   small = false,
 }: OfferCardProps) {
-  const colorClasses =
-    color === "orange"
-      ? "bg-[#f37513] hover:bg-orange-500"
-      : "bg-[#0056a4] hover:bg-blue-800";
-
-  const headerColor = color === "orange" ? "bg-[#f37513]" : "bg-[#0056a4]";
-
   return (
     <div
       className={`bg-white rounded-2xl w-auto shadow-sm overflow-hidden border border-gray-200 ${
@@ -48,7 +48,7 @@ export default function OfferCard({
         </div>
 
         <button
-          className={`w-full ${colorClasses} text-white font-semibold py-3 rounded-xl transition`}
+          className={`w-full ${color} text-white font-semibold py-3 rounded-xl transition cursor-pointer`}
         >
           Usar Esta Oferta
         </button>
@@ -56,4 +56,3 @@ export default function OfferCard({
     </div>
   );
 }
-

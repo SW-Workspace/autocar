@@ -1,7 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
+@tailwind utilities;
+
+@layer components {
+  :root {
+    --green-primary: #007700;
+    --yellow-secondary: #ffee00;
+    --blue-tertiary: #0077bb;
+    --red-quartenary: #ee1100;
+  }
+}
 
 @theme {
   --font-inter: "Inter", system-ui;
 }
 
+::selection {
+  background-color: var(--green-primary);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  background-color: #003d74;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue-tertiary);
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--blue-tertiary);
+}
+
+::-webkit-scrollbar-track {
+  background: #003d74;
+  border-radius: 10px;
+}

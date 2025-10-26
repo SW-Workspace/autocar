@@ -1,13 +1,16 @@
-import { Car, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#003d74] text-white">
+    <footer className="bg-linear-to-br from-[var(--blue-tertiary)] to-[var(--green-primary)] text-white">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <Car className="w-6 h-6" />
-            <h2 className="font-bold text-lg">AutoRent</h2>
+            <img
+              src="/favicon/favicon-96x96.png"
+              className="rounded-full w-10"
+            />
+            <h2 className="font-bold text-lg">WillCar</h2>
           </div>
           <p className="text-sm mb-4">
             Tu mejor opción para alquilar vehículos de calidad con el mejor
@@ -46,7 +49,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-lg mb-3">Institucional</h3>
+          <h3 className="font-bold text-lg mb-3 text-[var(--yellow-secondary)]">
+            Institucional
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
               <a href="#" className="hover:underline">
@@ -67,7 +72,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-lg mb-3">Negocios</h3>
+          <h3 className="font-bold text-lg mb-3 text-[var(--yellow-secondary)]">
+            Negocios
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>
               <a href="#" className="hover:underline">
@@ -88,10 +95,12 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-lg mb-3">Contactos</h3>
+          <h3 className="font-bold text-lg mb-3 text-[var(--yellow-secondary)]">
+            Contactos
+          </h3>
           <ul className="space-y-2 text-sm">
             <li>Teléfono: +593 2 123 4567</li>
-            <li>Email: info@autorent.com</li>
+            <li>Email: info@willcar.com</li>
             <li>
               <a href="#" className="hover:underline">
                 Ayuda
@@ -104,7 +113,7 @@ export default function Footer() {
       <div className="border-t border-white/20"></div>
 
       <div className="text-center py-4 text-sm text-gray-300">
-        © 2025 AutoRent. Todos los derechos reservados
+        © 2025 WillCar. Todos los derechos reservados
       </div>
     </footer>
   );
