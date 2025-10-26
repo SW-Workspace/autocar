@@ -1,6 +1,4 @@
 import { Calendar } from "lucide-react";
-import type { OfferItem } from "../data/offersData";
-import type { ReactNode } from "react";
 
 interface OfferCardProps {
   headerColor?: string;
@@ -11,6 +9,7 @@ interface OfferCardProps {
   code: string;
   valid: string;
   small?: boolean;
+}
 
 export default function OfferCard({
   headerColor,

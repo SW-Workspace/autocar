@@ -2,7 +2,6 @@ import { Percent, Calendar, Gift, Star } from "lucide-react";
 import type { ComponentType } from "react";
 
 export interface OfferItem {
-  color: "orange" | "blue";
   icon: ComponentType<{ size?: number }>;
   title: string;
   description: string;
@@ -13,7 +12,6 @@ export interface OfferItem {
 
 const offersData: OfferItem[] = [
   {
-    color: "orange",
     icon: Percent,
     title: "15% OFF - Nuevos Clientes",
     description:
@@ -22,7 +20,6 @@ const offersData: OfferItem[] = [
     valid: "31 de Diciembre, 2025",
   },
   {
-    color: "blue",
     icon: Calendar,
     title: "Alquiler Semanal - 20% OFF",
     description:
@@ -31,7 +28,6 @@ const offersData: OfferItem[] = [
     valid: "31 de Diciembre, 2025",
   },
   {
-    color: "orange",
     icon: Gift,
     title: "Fin de Semana Especial",
     description:
@@ -41,7 +37,6 @@ const offersData: OfferItem[] = [
     small: true,
   },
   {
-    color: "blue",
     icon: Star,
     title: "Upgrade Gratis",
     description:

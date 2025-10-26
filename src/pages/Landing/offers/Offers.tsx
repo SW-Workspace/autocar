@@ -1,5 +1,5 @@
+import { Calendar, Gift, Percent, Star } from "lucide-react";
 import OfferCard from "./components/Offercard";
-import offersData from "./data/offersData";
 
 export default function Offers() {
   return (
@@ -13,16 +13,45 @@ export default function Offers() {
           alquiler
         </p>
         <div className="grid md:grid-cols-2 justify-center gap-8 max-w-4xl mx-auto w-full">
-          {offersData.map((data) =>(
-            <OfferCard
-              color={data.color}
-              icon={<data.icon size={data.small ? 40 : 48}/>}
-              title={data.title}
-              description={data.description}
-              code={data.code}
-              valid={data.valid}
-            />
-          ))}
+          <OfferCard
+            code=""
+            valid=""
+            headerColor="bg-[var(--yellow-secondary)] !text-black"
+            color="bg-[var(--yellow-secondary)] !text-black"
+            icon={<Percent size={48} />}
+            title="15% OFF - Nuevos Clientes"
+            description="Obtén un 15% de descuento en tu primera reserva. Usa el cupón BIENVENIDO al momento de reservar."
+          />
+
+          <OfferCard
+            code=""
+            valid=""
+            headerColor="bg-[var(--blue-tertiary)]"
+            color="bg-[var(--blue-tertiary)]"
+            icon={<Calendar size={48} />}
+            title="Alquiler Semanal - 20% OFF"
+            description="Alquila por 7 días o más y obtén un 20% de descuento en el total de tu reserva."
+          />
+
+          <OfferCard
+            code=""
+            valid=""
+            headerColor="bg-[var(--yellow-secondary)] !text-black"
+            color="bg-[var(--yellow-secondary)] !text-black"
+            icon={<Gift size={40} />}
+            title="Fin de Semana Especial"
+            description="Reserva de viernes a domingo y obtén el domingo gratis. Válido para todos los vehículos."
+          />
+
+          <OfferCard
+            code=""
+            valid=""
+            headerColor="bg-[var(--blue-tertiary)]"
+            color="bg-[var(--blue-tertiary)]"
+            icon={<Star size={40} />}
+            title="Upgrade Gratis"
+            description="Reserva un vehículo económico y recibe un upgrade gratis a la siguiente categoría, sujeto a disponibilidad."
+          />
         </div>
       </div>
     </section>

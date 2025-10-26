@@ -1,6 +1,15 @@
-import Hero from "./components/Hero";
-import Statistics from "./components/Statistics";
-import Beginning from "./components/Beginning";
+import {
+  Award,
+  ClipboardCheck,
+  Clock,
+  Eye,
+  Handshake,
+  Lightbulb,
+  MapPin,
+  ShieldCheck,
+  Star,
+  Users,
+} from "lucide-react";
 
 export default function Us() {
   return (
