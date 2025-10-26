@@ -19,7 +19,7 @@ export default function Us() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Sobre AutoRent
           </h1>
-          <p className="text-center text-lg md:text-xl mb-8 w-[60ch]">
+          <p className="text-center text-lg md:text-xl mb-8 max-w-[60ch]">
             Somos líderes en alquiler de vehículos con más de 15 años de
             experiencia brindando el mejor servicio a nuestros clientes.
           </p>
@@ -44,7 +44,7 @@ export default function Us() {
             </span>
           </div>
           <h2 className="text-2xl font-bold">25+</h2>
-          <p className="text-gray-600">Ubicaciones</p>
+          <p className="text-gray-600">Ubicaciones Comerciales</p>
         </div>
 
         <div className="bg-white text-[var(--blue-tertiary)] p-6 rounded-lg shadow-lg text-center">
