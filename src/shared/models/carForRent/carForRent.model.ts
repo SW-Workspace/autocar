@@ -1,7 +1,7 @@
 export interface SB_CarForRentModel {
   id: number;
   group: string;
-  make: string;
+  brand: string;
   year?: number;
   passenger_capacity: number;
   luggage_capacity: number;
