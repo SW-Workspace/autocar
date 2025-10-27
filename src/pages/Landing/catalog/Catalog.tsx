@@ -46,7 +46,7 @@ export default function Catalog() {
                 seachFilter.map((car) => (
                     <div key={car.id} className="cardCar bg-white rounded-lg shadow-md shadow-black/20 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-fade-in-up">
                         <div className="rounded-t-lg relative w-full h-48 overflow-hidden">
-                            <span className="absolute right-2 top-2 bg-[var(--yellow-secondary)] text-sm px-2 py-1 rounded-lg">
+                            <span className="absolute right-2 top-2 bg-[var(--yellow-secondary)] text-sm px-2 py-1 rounded-lg z-90">
                                 ${car.rent_per_day}
                             </span>
                             <img
