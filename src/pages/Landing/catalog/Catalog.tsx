@@ -1,12 +1,12 @@
 import { fetchCars } from "@/config/store/slices/car/thunk";
 import type { AppDispatch, RootState } from "@/config/store/store";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
+import type { ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Search, Luggage, Users, DoorClosed, Gauge, Wind} from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Catalog() {
-  const navigate = useNavigate();
   const [search, setSearch] = useState("")
   // INFO: Un objeto que contiene otros objetos (cars.cars)
   const cars = useSelector((state: RootState) => state.car);
@@ -24,6 +24,10 @@ export default function Catalog() {
       .includes(search.toLowerCase())
   );
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value.trimStart());
+  };
+
   return (
     <>
       <div className="flex flex-col items-center mt-15 gap-4 pb-4">
@@ -33,7 +37,7 @@ export default function Catalog() {
                 placeholder="Escribe el modelo o marca del carro..."
                 className="flex-1 px-2 py-3 bg-white rounded-l-lg focus:outline-none"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={handleChange}
             />
             <div 
                 className="flex items-center justify-center px-4 bg-[var(--blue-tertiary)] text-white py-3 rounded-r-lg cursor-pointer">
@@ -92,12 +96,12 @@ export default function Catalog() {
                             </div>
                             </div>
 
-                            <button
-                            className="w-full py-2 bg-[var(--yellow-secondary)] font-semibold rounded-lg cursor-pointer"
-                            onClick={() => navigate(`/vehicles/${car.id}`)}
+                            <Link 
+                                to={`/vehicles/${car.id}`}
+                                className=" flex w-full py-2 bg-[var(--yellow-secondary)] font-semibold rounded-lg cursor-pointer items-center justify-center"
                             >
                             Ver detalles
-                            </button>
+                            </Link>
                         </div>
                         </div>
                     ))
