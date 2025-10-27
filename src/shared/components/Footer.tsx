@@ -1,5 +1,7 @@
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
+// TODO: Optimize
+
 export default function Footer() {
   return (
     <footer className="bg-linear-to-br from-[var(--blue-tertiary)] to-[var(--green-primary)] text-white">

@@ -1,13 +1,13 @@
 import { Calendar, MapPin } from "lucide-react";
 
-interface Heroprops {
+interface HeroProps {
   group: string;
   make: string;
   rent_per_day: number;
   url_img: string;
 }
 
-export default function Hero(props: Heroprops) {
+export default function Hero(props: HeroProps) {
   return (
     <>
       <section className="flex flex-col lg:flex-row justify-around max-lg:justify-center max-lg:gap-4 lg:pl-15 items-center w-full max-lg:mt-8 h-auto md:h-dvh mt-3 lg:mt:0 bg-gradient-to-br from-[var(--blue-tertiary)] to-[var(--green-primary)]">
@@ -50,4 +50,3 @@ export default function Hero(props: Heroprops) {
     </>
   );
 }
-

@@ -2,6 +2,8 @@ import { toTitleCase } from "@/shared/helpers/utils";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
+// TODO: Optimize
+
 export default function TopBar() {
   const location = useLocation();
   const currentLocation = location.pathname.split("/");

@@ -6,6 +6,9 @@ import { ArrowLeft } from "lucide-react";
 import { useAuth, type SignType } from "@/shared/hooks/useAuth";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const { supabaseSignInWithEmail, isAuthenticated, loading } = useAuth();
 
   const [form, setForm] = useState<Pick<SignType, "email" | "password">>({
@@ -13,8 +16,6 @@ export default function Login() {
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;

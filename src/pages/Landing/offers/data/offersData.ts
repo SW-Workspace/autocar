@@ -1,6 +1,8 @@
 import { Percent, Calendar, Gift, Star } from "lucide-react";
 import type { ComponentType } from "react";
 
+// TODO: Maybe replace this (First ask client)
+
 export interface OfferItem {
   icon: ComponentType<{ size?: number }>;
   title: string;
@@ -9,6 +11,8 @@ export interface OfferItem {
   valid: string;
   small?: boolean;
 }
+
+// TODO: Optimize
 
 const offersData: OfferItem[] = [
   {

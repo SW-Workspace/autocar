@@ -26,10 +26,6 @@ export default function TechnicalDetails(props: TechnicalDetailsProps) {
     { label: "ABS", value: props.abs },
   ];
 
-  const car = props.carName;
-
-  console.log(car);
-
   const handlePayWithWhatsApp = () => {
     const phoneNumber = "593980703975";
     const text = encodeURIComponent(

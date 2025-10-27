@@ -12,6 +12,8 @@ export async function supabaseGetUserById(userId: Pick<SB_UserModel, "id">) {
   return userData;
 }
 
+// NOTE: Maybe we won't use this function
+
 export async function supabaseGetAllUsers() {
   const { data: userData, error: userError } = await supabase
     .from("users")
