@@ -7,6 +7,9 @@ import {
 import type { SB_UserModel } from "../models/auth/user.model";
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/config/supabase/supabase";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/config/store/store";
+import { signInWithPassword, signOut } from "@/config/store/slices/auth/thunk";
 
 export interface AuthContextType {
   user: User | null;
@@ -34,6 +37,8 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export type SignType = SB_UserModel & { password: string };
 
 export const AuthContextProvider = ({ children }: PropsWithChildren) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [user, setUser] = useState<AuthContextType["user"]>(null);
   const [session, setSession] = useState<AuthContextType["session"]>(null);
   const [token, setToken] = useState<AuthContextType["token"]>(null);
@@ -118,6 +123,8 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         throw new Error(authError.message);
       }
 
+      dispatch(signInWithPassword(signInInfo));
+
       setUser(userData.session?.user);
       setSession(userData.session);
       setToken(userData.session?.token);
@@ -135,6 +142,8 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
     try {
       const { error: outError } = await supabase.auth.signOut();
       if (outError) throw new Error(outError.message);
+
+      dispatch(signOut());
 
       setUser(null);
       setSession(null);

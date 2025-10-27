@@ -1,5 +1,8 @@
 import { Calendar } from "lucide-react";
 
+// TODO: Optimize
+// TODO: Improve props
+
 interface OfferCardProps {
   headerColor?: string;
   color?: string;

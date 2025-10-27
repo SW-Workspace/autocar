@@ -2,6 +2,8 @@ import { useState } from "react";
 import { User, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// TODO: Optimize
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
