@@ -1,8 +1,10 @@
 import { Badge } from "@/shared/components/ui/Badge";
 import CarCard from "./components/CarCard";
 import { Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Fleet() {
+  const navigate = useNavigate();
   const data = [
     {
       id: 1,
@@ -74,7 +76,10 @@ export default function Fleet() {
         ))}
       </div>
       <div className="text-center">
-        <button className="items-center justify-center gap-2 cursor-pointer text-sm font-medium transition-all border shadow-xs h-10 rounded-md px-6  border-[var(--blue-tertiary)] text-[var(--blue-tertiary)] hover:bg-[var(--blue-tertiary)] hover:text-white bg-transparent">
+        <button 
+          className="items-center justify-center gap-2 cursor-pointer text-sm font-medium transition-all border shadow-xs h-10 rounded-md px-6  border-[var(--blue-tertiary)] text-[var(--blue-tertiary)] hover:bg-[var(--blue-tertiary)] hover:text-white bg-transparent"
+          onClick={()=> navigate('/catalog')}
+          >
           Ver todos los grupos
         </button>
       </div>
