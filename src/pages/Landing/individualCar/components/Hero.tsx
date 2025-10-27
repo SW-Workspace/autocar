@@ -1,4 +1,4 @@
-import { Calendar, MapPin, ArrowLeft, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, ArrowLeft} from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
