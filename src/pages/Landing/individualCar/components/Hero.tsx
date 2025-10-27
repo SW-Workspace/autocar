@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 interface HeroProps {
   group: string;
-  make: string;
+  brand: string;
   rent_per_day: number;
   url_img: string;
 }
@@ -26,7 +26,7 @@ export default function Hero(props: HeroProps) {
             <span className="text-4xl font-bold max-lg:text-3xl">
               Grupo {props.group}
             </span>
-            <span>Similar a: {props.make}</span>
+            <span>Similar a: {props.brand}</span>
             <div>
               <span className="text-5xl text-[var(--yellow-secondary)] font-bold max-lg:text-4xl">
                 ${props.rent_per_day}

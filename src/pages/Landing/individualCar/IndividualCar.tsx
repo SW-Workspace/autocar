@@ -26,7 +26,7 @@ export default function IndividualCar() {
         {/* TODO: Refactor (improve prop drilling) */} 
         <Hero
           group={car?.group!}
-          make={car?.make!}
+          make={car?.brand!}
           rent_per_day={car?.rent_per_day!}
           url_img={car?.url_img!}
         />
