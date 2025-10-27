@@ -11,6 +11,7 @@ import Overview from "./pages/Main/overview/Overview";
 import Main from "./pages/Main/Main";
 import Cars from "./pages/Main/cars/Cars";
 import Settings from "./pages/Main/settings/Settings";
+import Catalog from "./pages/Landing/catalog/Catalog";
 
 export const routes = [
   {
@@ -24,6 +25,10 @@ export const routes = [
       {
         path: "business",
         element: <Business />,
+      },
+      {
+        path: "catalog",
+        element: <Catalog />,
       },
       {
         path: "contact",
