@@ -1,4 +1,6 @@
-const Destinations = () => {
+// TODO: Componetize and optimize
+
+export default function Destinations() {
   const destinations = [
     {
       name: "Parque de Agua",
@@ -68,6 +70,4 @@ const Destinations = () => {
       </div>
     </section>
   );
-};
-
-export default Destinations;
+}

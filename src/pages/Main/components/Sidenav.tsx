@@ -2,6 +2,8 @@ import { useAuth } from "@/shared/hooks/useAuth";
 import { LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// TODO: Optimize
+
 export default function Sidenav() {
   const { supabaseCloseSession } = useAuth();
 

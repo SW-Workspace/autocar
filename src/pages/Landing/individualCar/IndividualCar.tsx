@@ -9,6 +9,7 @@ import { fetchCarById } from "@/config/store/slices/car/thunk";
 
 export default function IndividualCar() {
   const { id } = useParams();
+
   const car = useSelector((state: RootState) => state.car.car);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -21,6 +22,8 @@ export default function IndividualCar() {
   return (
     <>
       <div className="w-full flex flex-col justify-center items-center">
+
+        {/* TODO: Refactor (improve prop drilling) */} 
         <Hero
           group={car?.group!}
           make={car?.make!}

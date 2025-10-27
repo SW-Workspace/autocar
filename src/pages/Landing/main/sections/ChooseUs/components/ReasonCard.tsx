@@ -1,3 +1,6 @@
+// TODO: Improve "reusable" component
+// TODO: Optimize
+
 export interface ReasonCardProps {
   cardClassName?: string;
   color: string;

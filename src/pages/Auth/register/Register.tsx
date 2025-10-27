@@ -8,6 +8,8 @@ import { useAuth, type SignType } from "@/shared/hooks/useAuth";
 type SignUpType = Partial<SignType> & { confirmPassword: string };
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const { supabaseSignUpUser } = useAuth();
 
   const [form, setForm] = useState<SignUpType>({
@@ -19,8 +21,6 @@ export default function Register() {
     confirmPassword: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement>,

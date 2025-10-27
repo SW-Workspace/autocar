@@ -124,4 +124,3 @@ export async function supabaseDeleteCarForRentById(carId: number) {
 
   if (error) throw new Error(error.message);
 }
-

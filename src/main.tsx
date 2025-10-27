@@ -11,10 +11,10 @@ const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthContextProvider>
-      <Provider store={store}>
+    <Provider store={store}>
+      <AuthContextProvider>
         <RouterProvider router={router} />
-      </Provider>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </Provider>
   </StrictMode>,
 );

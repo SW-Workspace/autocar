@@ -13,6 +13,8 @@ export interface ValueItem {
   value: string;
 }
 
+// TODO: Optimize
+
 const valuesData: ValueItem[] = [
   {
     icon: ShieldCheck,

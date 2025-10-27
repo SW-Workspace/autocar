@@ -1,5 +1,5 @@
 import { Calendar, Gift, Percent, Star } from "lucide-react";
-import OfferCard from "./components/Offercard";
+import OfferCard from "./components/OfferCard";
 
 export default function Offers() {
   return (
