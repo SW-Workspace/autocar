@@ -28,7 +28,11 @@ export default function IndividualCar() {
           group={car?.group!}
           brand={car?.brand!}
           rent_per_day={car?.rent_per_day!}
-          url_img={car?.url_img!}
+          urls_img={ // this is temporal 
+            typeof car?.urls_img === "string"
+            ? JSON.parse(car.urls_img)
+            : car?.urls_img || []
+          }
         />
         <Characteristics
           passengers={car?.passenger_capacity!}

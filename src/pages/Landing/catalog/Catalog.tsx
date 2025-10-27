@@ -16,6 +16,7 @@ export default function Catalog() {
   useEffect(() => {
     // NOTE: La función fetchCars ya tiene un console.log para mostrar los carros, no hay que poner otro.
     dispatch(fetchCars());
+    console.log("j")
   }, [dispatch]);
 
   const seachFilter = cars.cars.filter((car) =>
@@ -54,7 +55,7 @@ export default function Catalog() {
                                 ${car.rent_per_day}
                             </span>
                             <img
-                                src={car.url_img}
+                                src={car.urls_img[0]}
                                 className="object-cover h-full w-full rounded-t-lg transition-transform duration-300 hover:scale-110 select-none"
                             />
                         </div>
