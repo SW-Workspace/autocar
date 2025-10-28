@@ -7,16 +7,12 @@ import { Search, Luggage, Users, DoorClosed, Gauge, Wind} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Catalog() {
-  const [search, setSearch] = useState("")
-  // INFO: Un objeto que contiene otros objetos (cars.cars)
+  const [ search, setSearch ] = useState("")
   const cars = useSelector((state: RootState) => state.car);
   const dispatch = useDispatch<AppDispatch>();
 
-  // INFO: Esto recupera todos los carros y los guarda en la variable cars
   useEffect(() => {
-    // NOTE: La función fetchCars ya tiene un console.log para mostrar los carros, no hay que poner otro.
     dispatch(fetchCars());
-    console.log("j")
   }, [dispatch]);
 
   const seachFilter = cars.cars.filter((car) =>
