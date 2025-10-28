@@ -1,4 +1,4 @@
-import Title from "./Components/title";
+import Title from "./Components/Title";
 import BasicInformation from "./Components/BasicInformation";
 import CarCapacity from "./Components/CarCapacity";
 import TechnicalSpecifications from "./Components/TechnicalSpecifications";
@@ -6,22 +6,90 @@ import CarFeatures from "./Components/CarFeatures";
 import IncomeInformation from "./Components/IncomeInformation";
 import AdditionalInformation from "./Components/AdditionalInformation";
 import CarImages from "./Components/CarImages";
+import { carSchema, type CarFormData } from "./schemas/carSchema";
+import { useState } from "react";
 
 export default function AddCar() {
+    const [formData, setFormData] = useState<Partial<CarFormData>>({});
+    const [errors, setErrors] = useState<Record<string, string>>({});
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        const result = carSchema.safeParse(formData);
+        
+        if (!result.success) {
+        const formattedErrors: Record<string, string> = {};
+        result.error.issues.forEach(issue => {
+            if (issue.path[0]) {
+            formattedErrors[issue.path[0] as string] = issue.message;
+            }
+        });
+        setErrors(formattedErrors);
+        return;
+        }
+        
+        console.log('Formulario válido:', result.data);
+    };
+
+
+    const updateFormData = (field: string, value: any) => {
+        setFormData(prev => ({
+            ...prev,
+            [field]: value
+        }));
+        
+        if (errors[field]) {
+            setErrors(prev => ({
+                ...prev,
+                [field]: ''
+            }));
+        }
+    };
+
+
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
                 <Title />
 
-                    <form className="p-6 space-y-8">
-                        <BasicInformation />
-                        <CarCapacity />
-                        <TechnicalSpecifications />
-                        <CarFeatures />
-                        <IncomeInformation />
-                        <AdditionalInformation />
-                        <CarImages />
+                    <form className="p-6 space-y-8" onSubmit={handleSubmit}>
+                        <BasicInformation
+                            formData={formData}
+                            setFormData={updateFormData}
+                            errors={errors}
+                         />
+                        <CarCapacity 
+                            formData={formData}
+                            setFormData={updateFormData}
+                            errors={errors}
+                        />
+                        <TechnicalSpecifications 
+                            formData={formData}
+                            setFormData={updateFormData}
+                            errors={errors}
+                        />
+                        <CarFeatures 
+                            formData={formData}
+                            setFormData={updateFormData}
+                            errors={errors}
+                        />
+                        <IncomeInformation 
+                            formData={formData}
+                            setFormData={updateFormData}
+                            errors={errors}
+                        />
+                        <AdditionalInformation 
+                            formData={formData}
+                            setFormData={updateFormData}
+                            errors={errors}
+                        />
+                        <CarImages 
+                            formData={formData}
+                            setFormData={updateFormData}
+                            errors={errors}
+                        />
                         
                         <div className="flex flex-col sm:flex-row gap-4 justify-end pt-6 border-t">
                             <button 
@@ -32,7 +100,7 @@ export default function AddCar() {
                             </button>
                             <button 
                                 type="submit"
-                                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-lg hover:from-blue-700 hover:to-green-700 transition-colors font-medium shadow-lg"
+                                className="px-6 py-3 cursor-pointer bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-lg hover:from-blue-700 hover:to-green-700 transition-colors font-medium shadow-lg"
                             >
                                 Publicar Auto
                             </button>
