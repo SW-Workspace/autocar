@@ -14,6 +14,8 @@ import Settings from "./pages/Main/settings/Settings";
 import Catalog from "./pages/Landing/catalog/Catalog";
 import AddCar from "./pages/Landing/addCar/AddCar";
 import { AuthGuard } from "./shared/guard/AuthGuard";
+import Recover from "./pages/Auth/Recover/Recover";
+import Reset from "./pages/Auth/Reset/Reset";
 
 export const routes = [
   {
@@ -64,6 +66,14 @@ export const routes = [
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "recover",
+        element: <Recover />,
+      },
+      {
+        path: "reset",
+        element: <Reset />,
       },
     ],
   },

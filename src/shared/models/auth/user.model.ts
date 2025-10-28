@@ -4,6 +4,6 @@ export interface SB_UserModel {
   last_name: string;
   email: string;
   phone: number;
-  rol: "user" | "admin";
+  role: "user" | "admin";
   created_at: Date | string;
 }
