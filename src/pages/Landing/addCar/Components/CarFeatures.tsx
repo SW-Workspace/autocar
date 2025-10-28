@@ -2,8 +2,7 @@ import type { addCarsFormModel } from "@/shared/models/addCar/addCar.model"
 
 export default function CarFeatures({
   formData,
-  setFormData,
-  errors
+  setFormData
 }: addCarsFormModel) {
     const handleCheckboxChange = (field: string, checked: boolean) => {
       setFormData?.(field, checked);

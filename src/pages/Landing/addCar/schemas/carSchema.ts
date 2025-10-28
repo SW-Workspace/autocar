@@ -1,24 +1,27 @@
 import { z } from 'zod';
 
 export const carSchema = z.object({
-    group: z.enum(['Económico', 'SUV Compacto', 'Sedán Premium'], {
-        required_error: "El grupo del auto es requerido"
-    }),
+    group: z.enum(['Económico', 'SUV Compacto', 'Sedán Premium'])
+        .refine(val => val !== undefined, {
+                message: "El grupo del auto es requerido"
+        }),
     brand: z.string().min(1, "La marca es requerida").max(100, "Marca demasiado larga"),
     year: z.number()
     .min(1950, "El año debe ser mayor o igual a 1950")
     .max(new Date().getFullYear() + 1, "El año no puede ser futuro"),
-    fuel_type: z.enum(['gasolina', 'diésel', 'híbrido', 'eléctrico'], {
-        required_error: "El tipo de combustible es requerido"
-    }),
+    fuel_type: z.enum(['gasolina', 'diésel', 'híbrido', 'eléctrico'])
+        .refine(val => val !== undefined, {
+            message: "El tipo de combustible es requerido"
+        }),
 
     passenger_capacity: z.number().min(1, "Debe ser al menos 1 pasajero"),
     luggage_capacity: z.number().min(0, "No puede ser negativo").optional(),
     tank_capacity: z.number().min(0, "No puede ser negativo").optional(),
 
-    transmission: z.enum(['Manual', 'Automática'], {
-        required_error: "La transmisión es requerida"
-    }),
+    transmission: z.enum(['Manual', 'Automática'])
+        .refine(val => val !== undefined, {
+            message: "La transmisión es requerida"
+        }),
     engine: z.string().max(50, "Descripción del motor demasiado larga").optional(),
     fuel_consumption: z.string().max(20, "Consumo demasiado largo").optional(),
     car_doors: z.number().min(2).max(6, "Máximo 6 puertas").optional(),
