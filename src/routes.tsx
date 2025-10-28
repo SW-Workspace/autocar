@@ -12,6 +12,8 @@ import Main from "./pages/Main/Main";
 import Cars from "./pages/Main/cars/Cars";
 import Settings from "./pages/Main/settings/Settings";
 import Catalog from "./pages/Landing/catalog/Catalog";
+import Recover from "./pages/Auth/Recover/Recover";
+import Reset from "./pages/Auth/Reset/Reset";
 
 export const routes = [
   {
@@ -54,6 +56,14 @@ export const routes = [
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "recover",
+        element: <Recover />,
+      },
+      {
+        path: "reset",
+        element: <Reset />,
       },
     ],
   },

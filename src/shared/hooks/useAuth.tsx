@@ -67,7 +67,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
             last_name: signUpInfo.last_name,
             email: signUpInfo.email,
             phone: signUpInfo.phone,
-            rol: "user",
+            role: "user",
           },
         ]);
 
@@ -102,7 +102,6 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         .maybeSingle();
 
       if (userError) {
-        alert(userError.message);
         throw Error(userError.message);
       }
 
@@ -119,7 +118,6 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         });
 
       if (authError) {
-        alert(authError.message);
         throw new Error(authError.message);
       }
 
