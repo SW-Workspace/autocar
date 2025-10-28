@@ -34,7 +34,7 @@ export interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export type SignType = SB_UserModel & { password: string };
+export type SignType = Partial<SB_UserModel> & { password: string };
 
 export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -102,7 +102,6 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         .maybeSingle();
 
       if (userError) {
-        alert(userError.message);
         throw Error(userError.message);
       }
 
@@ -119,7 +118,6 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         });
 
       if (authError) {
-        alert(authError.message);
         throw new Error(authError.message);
       }
 

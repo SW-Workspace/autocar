@@ -23,3 +23,21 @@ export async function supabaseGetAllUsers() {
   if (userError) throw Error(userError.message);
   return userData;
 }
+
+export async function supabaseRecoveryPasswordByEmail(email: string) {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: "http://localhost:5173/auth/reset", // FIX: Change this in production
+  });
+
+  if (error) throw new Error(error.message);
+
+  return true;
+}
+
+export async function supabaseChangePassword(newPassword: string) {
+  const { error } = await supabase.auth.updateUser({ password: newPassword });
+
+  if (error) throw new Error(error.message);
+
+  return true;
+}
