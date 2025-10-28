@@ -34,7 +34,7 @@ export interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export type SignType = Partial<SB_UserModel> & { password: string };
+export type SignType = SB_UserModel & { password: string };
 
 export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -67,7 +67,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
             last_name: signUpInfo.last_name,
             email: signUpInfo.email,
             phone: signUpInfo.phone,
-            rol: "user",
+            role: "user",
           },
         ]);
 
