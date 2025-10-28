@@ -9,7 +9,7 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { supabaseSignInWithEmail, isAuthenticated, loading } = useAuth();
+  const { supabaseSignInWithEmail, isAuthenticated, loading, user } = useAuth();
 
   const [form, setForm] = useState<Pick<SignType, "email" | "password">>({
     email: "",
@@ -41,8 +41,13 @@ export default function Login() {
 
   useEffect(() => {
     if (isAuthenticated && !loading) {
-      const from = location.state?.from?.pathname || "/dashboard/inicio";
-      navigate(from, { replace: true });
+      if (user?.role === 'admin') {
+        const from = location.state?.from?.pathname || "/dashboard/inicio";
+        navigate(from, { replace: true });
+      } else {
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
+      }
     }
   }, [isAuthenticated, navigate, location]);
 

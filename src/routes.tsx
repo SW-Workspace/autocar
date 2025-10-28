@@ -12,6 +12,8 @@ import Main from "./pages/Main/Main";
 import Cars from "./pages/Main/cars/Cars";
 import Settings from "./pages/Main/settings/Settings";
 import Catalog from "./pages/Landing/catalog/Catalog";
+import AddCar from "./pages/Landing/addCar/AddCar";
+import { AuthGuard } from "./shared/guard/AuthGuard";
 
 export const routes = [
   {
@@ -42,6 +44,14 @@ export const routes = [
         path: "vehicles/:id",
         element: <IndividualCar />,
       },
+      {
+        path: "addcar",
+        element: (
+          <AuthGuard>
+            <AddCar />
+          </AuthGuard>
+        ),
+      }
     ],
   },
   {

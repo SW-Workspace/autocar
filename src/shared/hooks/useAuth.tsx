@@ -125,9 +125,9 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
 
       dispatch(signInWithPassword(signInInfo));
 
-      setUser(userData.session?.user);
-      setSession(userData.session);
-      setToken(userData.session?.token);
+      setUser(userData);
+      setSession(authData.session);
+      setToken(authData.session?.access_token!);
 
       return { auth: authData.session, user: userData };
     } catch (error) {

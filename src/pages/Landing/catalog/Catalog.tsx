@@ -3,11 +3,13 @@ import type { AppDispatch, RootState } from "@/config/store/store";
 import { useEffect, useState} from "react";
 import type { ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Search, Luggage, Users, DoorClosed, Gauge, Wind} from "lucide-react";
+import { Search, Luggage, Users, DoorClosed, Gauge, Wind, Plus} from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/shared/hooks/useAuth";
 
 export default function Catalog() {
   const [search, setSearch] = useState("")
+  const { user } = useAuth()
   // INFO: Un objeto que contiene otros objetos (cars.cars)
   const cars = useSelector((state: RootState) => state.car);
   const dispatch = useDispatch<AppDispatch>();
@@ -39,10 +41,24 @@ export default function Catalog() {
                 value={search}
                 onChange={handleChange}
             />
-            <div 
-                className="flex items-center justify-center px-4 bg-[var(--blue-tertiary)] text-white py-3 rounded-r-lg cursor-pointer">
-                <Search/>
-            </div>
+            {!user ? (
+                <div 
+                    className="flex items-center justify-center px-4 bg-[var(--blue-tertiary)] text-white py-3 rounded-r-lg cursor-pointer">
+                    <Search/>
+                </div>
+            ) : (
+                <div className="flex">
+                    <div className="flex gap-5 items-center justify-center px-4 bg-[var(--blue-tertiary)] text-white py-3 border-r cursor-pointer">
+                        <Search/>
+                    </div>
+                    <Link to='/addcar'>
+                        <button className="flex gap-5 items-center justify-center px-4 bg-[var(--red-quartenary)] text-white py-3 rounded-r-lg cursor-pointer">
+                            <Plus /> 
+                            <span>Alquilar un auto</span>
+                        </button>
+                    </Link>
+                </div>
+            )}
         </div>
         
         <div className="w-[80%] grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
