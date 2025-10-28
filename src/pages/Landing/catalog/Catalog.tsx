@@ -7,14 +7,11 @@ import { Search, Luggage, Users, DoorClosed, Gauge, Wind} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Catalog() {
-  const [search, setSearch] = useState("")
-  // INFO: Un objeto que contiene otros objetos (cars.cars)
+  const [ search, setSearch ] = useState("")
   const cars = useSelector((state: RootState) => state.car);
   const dispatch = useDispatch<AppDispatch>();
 
-  // INFO: Esto recupera todos los carros y los guarda en la variable cars
   useEffect(() => {
-    // NOTE: La función fetchCars ya tiene un console.log para mostrar los carros, no hay que poner otro.
     dispatch(fetchCars());
   }, [dispatch]);
 
@@ -54,7 +51,7 @@ export default function Catalog() {
                                 ${car.rent_per_day}
                             </span>
                             <img
-                                src={car.url_img}
+                                src={car.urls_img[0]}
                                 className="object-cover h-full w-full rounded-t-lg transition-transform duration-300 hover:scale-110 select-none"
                             />
                         </div>

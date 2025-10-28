@@ -27,5 +27,5 @@ export interface SB_CarForRentModel {
   engine: string;
   tank_capacity: number;
   trunk_capacity: number;
-  url_img: string;
+  urls_img: string[];
 }
