@@ -12,7 +12,7 @@ interface HeroProps {
 
 export default function Hero(props: HeroProps) {
   const [index, setIndex] = useState(0);
-  const [ isOpen, setIsOpen ] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   
   const handleClick = (index:number) => {
      setIndex(index)

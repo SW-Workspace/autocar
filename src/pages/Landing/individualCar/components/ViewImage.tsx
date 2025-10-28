@@ -1,14 +1,14 @@
 import { X } from "lucide-react";
 import { useState, useEffect } from "react"
 
-interface ImagePros{
+interface ImageProps{
     urls_img: string[];
     open: boolean;
     index: number;
     onClose: () => void;
 }
 
-export default function ViewImage(props: ImagePros){
+export default function ViewImage(props: ImageProps){
     const [index, setIndex] = useState(props.index);
     
     const handleClick = (index:number) => {
@@ -28,7 +28,7 @@ export default function ViewImage(props: ImagePros){
 
     return(
         <>
-        <dialog className={`fixed top-0 z-110 flex flex-col gap-1 justify-center items-center w-full h-full bg-black/70 backdrop-blur-2xl`}>
+        <dialog className="fixed top-0 z-110 flex flex-col gap-1 justify-center items-center w-full h-full bg-black/70 backdrop-blur-2xl">
             
             <button
                 className="absolute left-10 top-5 bg-[var(--yellow-secondary)] p-1 rounded-sm cursor-pointer"
