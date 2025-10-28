@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react';
-import type { addCarsFormModel } from "@/shared/models/addCar/addCar.model";
+import type { AddCarsFormProps } from "../schemas/carSchema";
 
 export default function CarImages({
   formData,
   setFormData,
   errors
-}: addCarsFormModel) {
+}: AddCarsFormProps) {
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -69,7 +69,7 @@ export default function CarImages({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-2">
       <h2 className="text-xl font-semibold text-gray-800 border-b pb-2">
         Imágenes del Auto
       </h2>
@@ -112,14 +112,14 @@ export default function CarImages({
           <button 
             type="button"
             onClick={triggerFileInput}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium cursor-pointer"
           >
             Seleccionar Archivos
           </button>
         </div>
       </div>
-      {errors?.images && (
-        <p className="text-red-500 text-sm mt-1">{errors.images}</p>
+      {errors?.images?.message && (
+        <p className="text-red-500 text-sm mt-1">{String(errors.images?.message)}</p>
       )}
 
       {currentImages.length > 0 && (

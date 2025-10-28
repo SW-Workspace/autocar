@@ -1,14 +1,14 @@
-import type { addCarsFormModel } from "@/shared/models/addCar/addCar.model"
+import type { AddCarsFormProps, CarFormData } from "../schemas/carSchema";
 
 export default function CarFeatures({
   formData,
   setFormData
-}: addCarsFormModel) {
-    const handleCheckboxChange = (field: string, checked: boolean) => {
+}: AddCarsFormProps) {
+    const handleCheckboxChange = (field: keyof CarFormData, checked: boolean) => {
       setFormData?.(field, checked);
     };
 
-  const features = [
+  const features: { key: keyof CarFormData; label: string }[] = [
     { key: 'air_conditioning', label: 'Aire Acondicionado' },
     { key: 'power_steering', label: 'Dirección Hidráulica' },
     { key: 'front_airbags', label: 'Airbags Delanteros' },
@@ -18,19 +18,22 @@ export default function CarFeatures({
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-2">
       <h2 className="text-xl font-semibold text-gray-800 border-b pb-2">
         Características del Auto
       </h2>
             
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {features.map((feature) => (
-          <label key={feature.key} className="flex items-center space-x-2">
+          <label 
+            key={feature.key} 
+            className="flex items-center space-x-2 cursor-pointer"
+          >
             <input 
               type="checkbox" 
-              checked={formData?.[feature.key] || false}
+              checked={!!formData?.[feature.key] || false}
               onChange={(e) => handleCheckboxChange(feature.key, e.target.checked)}
-              className="w-4 h-4 text-blue-600 rounded"
+              className="w-4 h-4 text-blue-600 rounded cursor-pointer"
             />
             <span className="text-sm text-gray-700">{feature.label}</span>
           </label>

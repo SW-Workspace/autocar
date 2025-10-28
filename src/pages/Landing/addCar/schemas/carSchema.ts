@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { FieldErrors } from 'react-hook-form';
 
 export const carSchema = z.object({
     group: z.enum(['Económico', 'SUV Compacto', 'Sedán Premium'])
@@ -47,3 +48,9 @@ export const carSchema = z.object({
 })
 
 export type CarFormData = z.infer<typeof carSchema>;
+
+export interface AddCarsFormProps {
+  formData?: CarFormData;
+  setFormData?: (field: keyof CarFormData, value: any) => void;
+  errors?: FieldErrors;
+}

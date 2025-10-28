@@ -1,60 +1,52 @@
-import Title from "./Components/Title";
-import BasicInformation from "./Components/BasicInformation";
-import CarCapacity from "./Components/CarCapacity";
-import TechnicalSpecifications from "./Components/TechnicalSpecifications";
-import CarFeatures from "./Components/CarFeatures";
-import IncomeInformation from "./Components/IncomeInformation";
-import AdditionalInformation from "./Components/AdditionalInformation";
-import CarImages from "./Components/CarImages";
+import Title from "./components/Title";
+import BasicInformation from "./components/BasicInformation";
+import CarCapacity from "./components/CarCapacity";
+import TechnicalSpecifications from "./components/TechnicalSpecifications";
+import CarFeatures from "./components/CarFeatures";
+import IncomeInformation from "./components/IncomeInformation";
+import AdditionalInformation from "./components/AdditionalInformation";
+import CarImages from "./components/CarImages";
 import { carSchema, type CarFormData } from "./schemas/carSchema";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 export default function AddCar() {
-    const [formData, setFormData] = useState<Partial<CarFormData>>({});
-    const [errors, setErrors] = useState<Record<string, string>>({});
+    const {
+        handleSubmit,
+        formState: { errors },
+        setValue,
+        watch
+    } = useForm<CarFormData>({
+        resolver: zodResolver(carSchema),
+        defaultValues: {}
+    });
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        
-        const result = carSchema.safeParse(formData);
-        
-        if (!result.success) {
-        const formattedErrors: Record<string, string> = {};
-        result.error.issues.forEach(issue => {
-            if (issue.path[0]) {
-            formattedErrors[issue.path[0] as string] = issue.message;
-            }
-        });
-        setErrors(formattedErrors);
-        return;
-        }
-        
-        console.log('Formulario válido:', result.data);
+    const formData = watch();
+
+    const onSubmit = (data: Partial<CarFormData>) => {
+        console.log('Formulario válido:', data);
     };
 
-
-    const updateFormData = (field: string, value: any) => {
-        setFormData(prev => ({
-            ...prev,
-            [field]: value
-        }));
-        
-        if (errors[field]) {
-            setErrors(prev => ({
-                ...prev,
-                [field]: ''
-            }));
-        }
+    const updateFormData = (field: keyof CarFormData, value: any) => {
+        setValue(field, value);
     };
-
 
     return (
-        <div className="min-h-screen bg-gray-50 py-8">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex w-full bg-gray-50 bg-gradient-to-br from-[var(--blue-tertiary)] to-[var(--green-primary)]">
+            <Link 
+                to="/catalog"
+                className="hidden lg:flex absolute top-10 left-30 items-center text-white text-sm"
+                >
+                <ArrowLeft size={18}/>
+                Regresar
+            </Link>
+            <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
                 <Title />
 
-                    <form className="p-6 space-y-8" onSubmit={handleSubmit}>
+                    <form className="p-6 space-y-2" onSubmit={handleSubmit(onSubmit)}>
                         <BasicInformation
                             formData={formData}
                             setFormData={updateFormData}
