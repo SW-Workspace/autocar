@@ -1,0 +1,35 @@
+import { z } from "zod";
+
+export const CarForRentSchema = z.object({
+  id: z.number().optional(),
+  group: z.string().min(1, "El grupo es obligatorio"),
+  brand: z.string().min(1, "La marca es obligatoria"),
+  year: z.number().min(1900, "Año inválido").optional(),
+  passenger_capacity: z.number().min(1, "Debe tener al menos 1 pasajero"),
+  luggage_capacity: z.number().min(0).optional(),
+  transmission: z.string().min(1, "La transmisión es obligatoria"),
+  travel_conditions: z.string().optional(),
+  fuel_type: z.string().min(1, "El tipo de combustible es obligatorio"),
+  renter_id: z.number(),
+  owner_id: z.number().nullable().optional(),
+  pick_up_location: z.string().min(1, "La ubicación es obligatoria"),
+  available: z.boolean().default(true),
+  rent_per_day: z.number().min(1, "Debe especificar un precio por día"),
+  rental_duraction_days: z.number().optional(),
+  details: z.string().optional(),
+  created_at: z.string().optional(),
+  car_doors: z.number().min(1),
+  air_conditioning: z.boolean().optional(),
+  power_steering: z.boolean().optional(),
+  front_airbags: z.boolean().optional(),
+  radio: z.boolean().optional(),
+  central_locking: z.boolean().optional(),
+  abs: z.boolean().optional(),
+  fuel_consumption: z.string().optional(),
+  engine: z.string().optional(),
+  tank_capacity: z.number().optional(),
+  trunk_capacity: z.number().optional(),
+  urls_img: z.array(z.string().url("Debe ser una URL válida")).optional(),
+});
+
+export type CarForRentFormType = z.infer<typeof CarForRentSchema>;

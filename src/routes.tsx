@@ -14,6 +14,7 @@ import Settings from "./pages/Main/settings/Settings";
 import Catalog from "./pages/Landing/catalog/Catalog";
 import Recover from "./pages/Auth/Recover/Recover";
 import Reset from "./pages/Auth/Reset/Reset";
+import FormCar from "./pages/Main/cars/formCar/FormCar";
 
 export const routes = [
   {
@@ -81,6 +82,10 @@ export const routes = [
           {
             path: "autos",
             element: <Cars />,
+          },
+          {
+            path: "auto/:id",
+            element:<FormCar/>
           },
           {
             path: "ajustes",
