@@ -16,7 +16,7 @@ export default function CarCapacity({
         Capacidades
       </h2>
             
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label
             htmlFor="passenger_capacity" 
@@ -76,6 +76,25 @@ export default function CarCapacity({
               errors?.tank_capacity ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Ej: 50"
+          />
+        </div>
+        <div>
+          <label 
+            htmlFor="trunk_capacity" 
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Capacidad del maletero
+          </label>
+          <input 
+            type="number" 
+            id="trunk_capacity"
+            value={formData?.trunk_capacity || ''}
+            onChange={(e) => handleChange('trunk_capacity', parseInt(e.target.value) || 0)}
+            min="0"
+            className={`w-full px-4 py-3 border rounded-lg  focus:border-blue-500 transition-colors ${
+              errors?.trunk_capacity ? 'border-red-500' : 'border-gray-300'
+            }`}
+            placeholder="Ej: 250"
           />
         </div>
       </div>
