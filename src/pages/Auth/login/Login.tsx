@@ -26,7 +26,7 @@ export default function Login() {
     resolver: zodResolver(loginFormSchema),
   });
 
-  const { supabaseSignInWithEmail, isAuthenticated, loading } = useAuth();
+  const { supabaseSignInWithEmail, isAuthenticated, loading, user } = useAuth();
 
   const onSubmit: SubmitHandler<LoginFormFields> = async (data) => {
     try {
@@ -43,8 +43,13 @@ export default function Login() {
 
   useEffect(() => {
     if (isAuthenticated && !loading) {
-      const from = location.state?.from?.pathname || "/dashboard/inicio";
-      navigate(from, { replace: true });
+      if (user?.role === 'admin') {
+        const from = location.state?.from?.pathname || "/dashboard/inicio";
+        navigate(from, { replace: true });
+      } else {
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
+      }
     }
   }, [isAuthenticated, navigate, location]);
 
