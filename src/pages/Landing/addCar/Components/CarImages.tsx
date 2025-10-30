@@ -9,7 +9,7 @@ export default function CarImages({
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const currentImages = formData?.imageFiles || [];
+  const currentImages = formData?.urls_img || [];
 
   const handleFiles = (files: FileList) => {
     const fileArray = Array.from(files);
@@ -26,7 +26,7 @@ export default function CarImages({
     const allFiles = [...existingFiles, ...sizeValidFiles].slice(0, 10);
     
     if (setFormData) {
-      setFormData('imageFiles', allFiles);
+      setFormData('urls_img', allFiles);
     }
   };
 
@@ -60,7 +60,7 @@ export default function CarImages({
   const removeImage = (index: number) => {
     const updatedImages = currentImages.filter((_: any, i: number) => i !== index);
     if (setFormData) {
-      setFormData('imageFiles', updatedImages);
+      setFormData('urls_img', updatedImages);
     }
   };
 

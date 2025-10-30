@@ -15,17 +15,20 @@ export default function Cars() {
   return (
     <>
     <div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
         {
-          cars.cars.map((data, index) =>(
+          cars.cars
+          .slice()
+          .sort((a, b) => a.id - b.id)
+          .map((data, index) =>(
             <Link to={`/dashboard/auto/${data.id}`}
               key={index}
-              className="bg-white flex rounded-lg cursor-pointer"
+              className="bg-white flex rounded-lg cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-fade-in-up"
             >
               
               <div className="flex-1 flex flex-col px-2">
                 <span className="text-lg font-semibold">{data.group}</span>
-                <span>{data.id}</span>
+                <span>{data.brand}</span>
                 <span>{data.created_at?.split('T')[0]}</span>
                 <div className={`flex gap-2 items-center border ${data.available? "border-[var(--green-primary)]": "border-[var(--red-quartenary)]"} rounded-md px-2 w-35 mt-4`}>
                     <div className={`${data.available? "bg-[var(--green-primary)]": "bg-[var(--red-quartenary)]"} p-1.5 h-1 w-1 rounded-full`}></div>

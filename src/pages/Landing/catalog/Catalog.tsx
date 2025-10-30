@@ -52,7 +52,7 @@ export default function Catalog() {
                     <Link to='/addcar'>
                         <button className="flex gap-5 items-center justify-center px-4 bg-[var(--red-quartenary)] text-white py-3 rounded-r-lg cursor-pointer">
                             <Plus /> 
-                            <span>Alquilar un auto</span>
+                            <span>Alquila tu auto</span>
                         </button>
                     </Link>
                 </div>

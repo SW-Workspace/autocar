@@ -17,6 +17,7 @@ export const carSchema = z.object({
 
     passenger_capacity: z.number().min(1, "Debe ser al menos 1 pasajero"),
     luggage_capacity: z.number().min(0, "No puede ser negativo").optional(),
+    trunk_capacity: z.number().min(0, "No puede ser negativo").optional(),
     tank_capacity: z.number().min(0, "No puede ser negativo").optional(),
 
     transmission: z.enum(['Manual', 'Automática'])
@@ -41,7 +42,7 @@ export const carSchema = z.object({
     travel_conditions: z.string().min(10, "Describe las condiciones de viaje (mínimo 10 caracteres)").max(500, "Descripción demasiado larga"),
     details: z.string().max(1000, "Detalles demasiado largos").optional(),    
 
-    imageFiles: z.array(z.instanceof(File))
+    urls_img: z.array(z.instanceof(File))
       .max(10, "Máximo 10 archivos de imagen")
       .optional(),
 
