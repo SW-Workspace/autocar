@@ -21,7 +21,6 @@ export default function Hero() {
 
   const {
         handleSubmit,
-        formState: { errors },
         setValue,
         watch
     } = useForm<formHero>({
