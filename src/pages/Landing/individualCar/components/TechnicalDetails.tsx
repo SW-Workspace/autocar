@@ -27,7 +27,7 @@ export default function TechnicalDetails(props: TechnicalDetailsProps) {
   ];
 
   const handlePayWithWhatsApp = () => {
-    const phoneNumber = "593980703975";
+    const phoneNumber = "573163537102";
     const text = encodeURIComponent(
       `Me gustaría alquilar el auto del grupo ${props.carName}`,
     );
