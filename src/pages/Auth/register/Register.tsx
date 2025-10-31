@@ -1,55 +1,64 @@
-import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "@/shared/components/LoadingSpinner";
 import { ArrowLeft } from "lucide-react";
-import { useAuth, type SignType } from "@/shared/hooks/useAuth";
+import { useAuth } from "@/shared/hooks/useAuth";
+import z from "zod";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type SignUpType = Partial<SignType> & { confirmPassword: string };
+const registerFormSchema = z
+  .object({
+    first_name: z.string(),
+    last_name: z.string(),
+    email: z.string().email(),
+    phone: z.string(), // TODO: Change this to number and add regex to robust verification
+    password: z.string(),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Las contraseñas no coinciden",
+    path: ["confirmPassword"],
+  });
+
+type RegisterFormFields = z.infer<typeof registerFormSchema>;
 
 export default function Register() {
-  const { supabaseSignUpUser } = useAuth();
-
-  const [form, setForm] = useState<SignUpType>({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: 0,
-    password: "",
-    confirmPassword: "",
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterFormFields>({
+    resolver: zodResolver(registerFormSchema),
   });
-  const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    field: string,
-  ): void => {
-    setForm((prev) => ({
-      ...prev,
-      [field]: e.target.value,
-    }));
-  };
+  const { supabaseSignUpUser } = useAuth();
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<RegisterFormFields> = async (data) => {
     try {
-      setIsLoading(true);
-      const res = await supabaseSignUpUser(form);
-      console.log(res);
+      // TODO: Improve passing the argument
+      await supabaseSignUpUser({
+        first_name: data.first_name,
+        last_name: data.last_name,
+        phone: parseInt(data.phone),
+        email: data.email,
+        password: data.password,
+      });
       setTimeout(() => {
         navigate("/");
       }, 3000);
     } catch (error) {
-      console.error(error);
-      throw error;
-    } finally {
-      setIsLoading(false);
+      setError("root", {
+        message:
+          error instanceof Error
+            ? error.message
+            : "Algo salió mal, inténtalo de nuevo más tarde",
+      });
     }
   };
 
-  if (isLoading) {
+  if (isSubmitting) {
     return <LoadingSpinner />;
   }
 
@@ -64,13 +73,13 @@ export default function Register() {
       </Link>
       <div className="bg-white rounded-lg shadow-lg w-sm md:w-md lg:w-lg p-6 max-sm:mt-8">
         <div className="text-center mb-6">
-          <h1 className="text-xl font-bold text-[#003d74]">Registrase</h1>
+          <h1 className="text-xl font-bold text-[#003d74]">Registrarse</h1>
           <p className="text-gray-600 text-sm mt-1">
             Crea tu cuenta de WillCar
           </p>
         </div>
 
-        <form className="space-y-4" onSubmit={(e) => handleSubmit(e)}>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
             <div className="space-y-1">
               <label
@@ -80,15 +89,17 @@ export default function Register() {
                 Nombre
               </label>
               <input
+                {...register("first_name")}
                 type="text"
-                name="name"
                 id="name"
-                value={form.first_name}
-                onChange={(e) => handleChange(e, "first_name")}
                 placeholder="Jhon"
                 className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
-                required
               />
+              {errors.first_name && (
+                <div className="text-red-500 text-sm">
+                  {errors.first_name.message}
+                </div>
+              )}
             </div>
             <div className="space-y-1">
               <label
@@ -98,15 +109,17 @@ export default function Register() {
                 Apellido
               </label>
               <input
+                {...register("last_name")}
                 type="text"
-                name="lastName"
                 id="lastName"
-                value={form.last_name}
-                onChange={(e) => handleChange(e, "last_name")}
                 placeholder="Doe"
                 className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
-                required
               />
+              {errors.last_name && (
+                <div className="text-red-500 text-sm">
+                  {errors.last_name.message}
+                </div>
+              )}
             </div>
           </div>
 
@@ -118,15 +131,15 @@ export default function Register() {
               Correo electrónico
             </label>
             <input
+              {...register("email")}
               type="email"
-              name="email"
               id="email"
-              value={form.email}
-              onChange={(e) => handleChange(e, "email")}
               placeholder="example@gmail.com"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
-              required
             />
+            {errors.email && (
+              <div className="text-red-500 text-sm">{errors.email.message}</div>
+            )}
           </div>
 
           <div>
@@ -134,18 +147,18 @@ export default function Register() {
               htmlFor="phone"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Numero de telefono
+              Número de teléfono
             </label>
             <input
+              {...register("phone")}
               type="tel"
-              name="phone"
               id="phone"
-              value={form.phone}
-              onChange={(e) => handleChange(e, "phone")}
               placeholder="1234567890"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
-              required
             />
+            {errors.phone && (
+              <div className="text-red-500 text-sm">{errors.phone.message}</div>
+            )}
           </div>
 
           <div>
@@ -156,15 +169,17 @@ export default function Register() {
               Contraseña
             </label>
             <input
+              {...register("password")}
               type="password"
-              name="password"
               id="password"
-              value={form.password}
-              onChange={(e) => handleChange(e, "password")}
               placeholder="••••••••"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
-              required
             />
+            {errors.password && (
+              <div className="text-red-500 text-sm">
+                {errors.password.message}
+              </div>
+            )}
           </div>
 
           <div>
@@ -175,24 +190,29 @@ export default function Register() {
               Confirma tu Contraseña
             </label>
             <input
+              {...register("confirmPassword")}
               type="password"
-              name="confirmPassword"
               id="confirmPassword"
-              value={form.confirmPassword}
-              onChange={(e) => handleChange(e, "confirmPassword")}
               placeholder="••••••••"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1966AD] focus:border-transparent transition"
-              required
             />
+            {errors.confirmPassword && (
+              <div className="text-red-500 text-sm">
+                {errors.confirmPassword.message}
+              </div>
+            )}
           </div>
 
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full cursor-pointer bg-[var(--yellow-secondary)] font-semibold py-3 px-4 rounded-lg transition duration-200"
           >
-            Registrase
+            {isSubmitting ? "Registrando..." : "Regístrate"}
           </button>
-
+          {errors.root && (
+            <div className="text-red-500 text-sm">{errors.root.message}</div>
+          )}
           <div className="flex flex-col text-sm md:flex-row justify-center text-center gap-1 pt-4 border-t border-gray-200">
             <span className="text-gray-600">¿Ya tienes una cuenta?</span>
             <Link

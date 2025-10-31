@@ -2,8 +2,8 @@ import App from "./App";
 import Us from "./pages/Landing/us/Us";
 import Contact from "./pages/Landing/contacts/Contact";
 import Offers from "./pages/Landing/offers/Offers";
-import Login from "./pages/Auth/login/login";
-import Register from "./pages/Auth/register/register";
+import Login from "./pages/Auth/login/Login";
+import Register from "./pages/Auth/register/Register";
 import IndividualCar from "./pages/Landing/individualCar/IndividualCar";
 import Business from "./pages/Landing/business/Business";
 import ProtectedRoutes from "./pages/Auth/components/ProtectedRoutes";
@@ -11,6 +11,11 @@ import Overview from "./pages/Main/overview/Overview";
 import Main from "./pages/Main/Main";
 import Cars from "./pages/Main/cars/Cars";
 import Settings from "./pages/Main/settings/Settings";
+import Catalog from "./pages/Landing/catalog/Catalog";
+import AddCar from "./pages/Landing/addCar/AddCar";
+import Recover from "./pages/Auth/Recover/Recover";
+import Reset from "./pages/Auth/Reset/Reset";
+import FormCar from "./pages/Main/cars/formCar/FormCar";
 
 export const routes = [
   {
@@ -24,6 +29,10 @@ export const routes = [
       {
         path: "business",
         element: <Business />,
+      },
+      {
+        path: "catalog",
+        element: <Catalog />,
       },
       {
         path: "contact",
@@ -50,7 +59,19 @@ export const routes = [
         path: "register",
         element: <Register />,
       },
+      {
+        path: "recover",
+        element: <Recover />,
+      },
+      {
+        path: "reset",
+        element: <Reset />,
+      },
     ],
+  },
+  {
+    path: "/addcar",
+    element: <AddCar />
   },
   {
     element: <ProtectedRoutes />,
@@ -66,6 +87,10 @@ export const routes = [
           {
             path: "autos",
             element: <Cars />,
+          },
+          {
+            path: "auto/:id",
+            element:<FormCar/>
           },
           {
             path: "ajustes",

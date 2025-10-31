@@ -1,3 +1,4 @@
+import type { SB_CarForRentModel } from "@/shared/models/carForRent/carForRent.model";
 import {
   supabaseGetAllCarsForRent,
   supabaseGetCarById,
@@ -19,6 +20,6 @@ export const fetchCarById = createAsyncThunk(
 
     console.log("Carro:", car);
 
-    return car;
+    return car as SB_CarForRentModel;
   },
 );

@@ -1,9 +1,16 @@
 import { useState } from "react";
-import { User, Menu, X } from "lucide-react";
+import { User, Menu, X, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+// TODO: Optimize
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, supabaseCloseSession } = useAuth()
+
+  const handleLogOut = async () => {
+    await supabaseCloseSession();
+  };
 
   return (
     <header className="fixed top-0 bg-linear-to-r from-[var(--blue-tertiary)] to-[var(--green-primary)] border-b border-b-white/40 w-full text-white font-semibold z-100">
@@ -43,12 +50,20 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+        {!user ? (
           <Link to="/auth/login">
             <button className="hidden cursor-pointer md:flex items-center gap-2 hover:bg-[var(--yellow-secondary)] hover:text-[var(--blue-tertiary)] transition p-2 rounded-md">
               <User size={18} />
               Iniciar sesión
             </button>
           </Link>
+          ) : (
+            <button onClick={handleLogOut} className="bg-red-600 cursor-pointer hover:bg-red-800 md:flex items-center gap-2 transition p-2 rounded-md">
+              <LogOut size={18} />
+              Cerrar sesión
+            </button>
+          )
+        }
 
           <button
             onClick={() => setIsOpen(!isOpen)}
