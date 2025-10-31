@@ -20,7 +20,7 @@ export function useCarForm() {
     defaultValues: {},
   });
 
-  const { setValue, watch, handleSubmit } = form;
+  const { setValue, watch } = form;
   const urls_img = watch("urls_img") || [];
 
   useEffect(() => {
