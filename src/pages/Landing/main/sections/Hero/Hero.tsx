@@ -68,15 +68,16 @@ export default function Hero() {
                     </label>
                     <div className="relative">
                       <MapPin className="absolute text-neutral-800 bottom-2.5 left-1.5 size-5" />
-                      <input
+                      <select
                         value={formData?.pick_up_location || ""}
                         onChange={(e) => handleChange("pick_up_location", e.target.value)}
-                        type="text"
                         name="pick_up_location"
                         id="pick_up_location"
-                        placeholder="Ciudad, Aeropuerto..."
                         className="outline-0 rounded-md placeholder:text-neutral-800 border border-black px-2 pl-8 h-10 w-full"
-                      />
+                      >
+                         <option value="">Selecciona un Lugar</option>
+                         <option value="Bucaramanga">Bucaramanga</option>
+                      </select>
                     </div>
                   </div>
                   <div className="space-y-2">
