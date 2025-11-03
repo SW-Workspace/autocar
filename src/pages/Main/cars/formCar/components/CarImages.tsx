@@ -13,19 +13,11 @@ export default function CarImages({ urls_img, setUrls, errors }: CarImagesProps)
   const currentImages = urls_img || [];
 
   const handleFiles = (files: FileList) => {
-  const fileArray = Array.from(files);
+    const fileArray = Array.from(files);
 
-  const validFiles = fileArray.filter(file =>
-    ['image/jpeg', 'image/png', 'image/webp'].includes(file.type)
-  );
-
-  const sizeValidFiles = validFiles.filter(file =>
-    file.size <= 10 * 1024 * 1024
-  );
-
-  const allFiles = [...urls_img, ...sizeValidFiles].slice(0, 10);
-  setUrls(allFiles);
-};
+    const allFiles = [...urls_img,  ...fileArray].slice(0, 10);
+    setUrls(allFiles);
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -55,14 +47,39 @@ export default function CarImages({ urls_img, setUrls, errors }: CarImagesProps)
   };
 
   const removeImage = (index: number) => {
-  const updated = urls_img.filter((_, i) => i !== index);
-  setUrls(updated);
-};
-
+    const updated = urls_img.filter((_, i) => i !== index);
+    setUrls(updated);
+  };
 
   const triggerFileInput = () => {
     fileInputRef.current?.click();
   };
+
+  const renderImage = () => {
+    if (currentImages.length === 0) return null;
+
+    return (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+        {currentImages.map((file, index) => (
+          <div key={index} className="relative group">
+            <img
+              src={file instanceof File ? URL.createObjectURL(file) : file}
+              alt={`Vista previa ${index + 1}`}
+              className="w-full h-34 object-cover rounded-lg border"
+            />
+            <button
+              type="button"
+              onClick={() => removeImage(index)}
+              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
 
   return (
     <div className="space-y-2">
@@ -82,8 +99,8 @@ export default function CarImages({ urls_img, setUrls, errors }: CarImagesProps)
             ? 'border-blue-500 bg-blue-50'
             : 'border-gray-300 hover:border-gray-400'
         }`}
-        onDragEnter={handleDrag}
-        onDragLeave={handleDrag}
+        onDragEnter={() => setDragActive(true)}
+        onDragLeave={() => setDragActive(false)}
         onDragOver={handleDrag}
         onDrop={handleDrop}
       >
@@ -127,27 +144,7 @@ export default function CarImages({ urls_img, setUrls, errors }: CarImagesProps)
           {String(errors.urls_img.message)}
         </p>
       )}
-
-      {currentImages.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-          {currentImages.map((file, index) => (
-            <div key={index} className="relative group">
-              <img
-                src={file instanceof File ? URL.createObjectURL(file) : file}
-                alt={`Vista previa ${index + 1}`}
-                className="w-full h-34 object-cover rounded-lg border"
-              />
-              <button
-                type="button"
-                onClick={() => removeImage(index)}
-                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                ×
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+      {renderImage()}      
     </div>
   );
 }
