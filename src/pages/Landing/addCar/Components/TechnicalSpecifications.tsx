@@ -1,4 +1,5 @@
 import type { AddCarsFormProps, CarFormData } from "../schemas/carSchema";
+import CustomSelect from "./CustomSelect";
 
 export default function TechnicalSpecifications({
   formData,
@@ -16,31 +17,14 @@ export default function TechnicalSpecifications({
           Especificaciones Técnicas
         </h2>
               
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <div>
-            <label 
-              htmlFor="transmission"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Transmisión *
-            </label>
-            <select 
-              value={formData?.transmission || ''}
-              id="transmission"
-              onChange={(e) => handleChange('transmission', e.target.value)}
-              className={`w-full px-4 py-3 border rounded-lg  focus:border-blue-500 transition-colors ${
-              errors?.transmission ? 'border-red-500' : 'border-gray-300'
-              }`}
-              required
-            >
-              <option value="">Selecciona transmisión</option>
-              <option value="Manual">Manual</option>
-              <option value="Automática">Automática</option>
-            </select>
-            {errors?.transmission?.message && (
-              <p className="text-red-500 text-sm mt-1">{String(errors.transmission?.message)}</p>
-            )}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <CustomSelect
+            label="Transmisión *"
+            options={["Manual", "Automática"]}
+            value={formData?.transmission || ""}
+            onChange={(v) => handleChange("transmission", v)}
+            error={errors?.transmission?.message ? String(errors.transmission.message) : undefined}
+          />
           <div>
             <label 
               htmlFor="engine"

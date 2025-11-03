@@ -100,16 +100,16 @@ export default function AddCar() {
     };
 
     return (
-        <div className="flex w-full bg-gray-50 bg-gradient-to-br from-[var(--blue-tertiary)] to-[var(--green-primary)]">
+        <div className="flex w-full">
             <Link 
                 to="/catalog"
-                className="hidden lg:flex absolute top-10 left-30 items-center text-white text-sm"
+                className="hidden lg:flex absolute top-10 left-10 items-center text-white text-sm"
                 >
                 <ArrowLeft size={18}/>
                 Regresar
             </Link>
-            <div className="w-full px-4 sm:px-6 lg:px-8">
-                <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
+            <div className="w-screen">
+                <div className="bg-white shadow-xl overflow-hidden">
                     <div className="bg-gradient-to-r from-blue-600 to-green-600 px-6 py-8">
                         <h1 className="text-3xl font-bold text-white text-center">
                         Publicar Auto para Renta
@@ -125,7 +125,7 @@ export default function AddCar() {
                         </div>
                     )}
 
-                    <form className="p-6 space-y-2" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="px-6 py-2 space-y-2" onSubmit={handleSubmit(onSubmit)}>
                         <BasicInformation
                             formData={formData}
                             setFormData={updateFormData}

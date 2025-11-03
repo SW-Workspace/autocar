@@ -3,6 +3,7 @@ import Header from "@/shared/components/Header";
 import Footer from "@/shared/components/Footer";
 import { useLocation } from "react-router-dom";
 import Main from "./main/Main";
+import RouteWatcher from '@/shared/components/RouteWatcher';
 
 export default function Landing() {
   const location = useLocation();
@@ -11,6 +12,7 @@ export default function Landing() {
     <>
       <div className="bg-slate-100 min-h-dvh flex flex-col relative">
         <Header />
+        <RouteWatcher />
         <div className="flex-1 mt-10">
           <div className="whatsapp-button fixed z-10 bottom-4 right-4">
             <button className="cursor-pointer">
