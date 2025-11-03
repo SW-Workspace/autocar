@@ -1,4 +1,5 @@
 import type { AddCarsFormProps, CarFormData } from "../schemas/carSchema";
+import CustomSelect from "./CustomSelect";
 
 export default function BasicInformation({
   formData,
@@ -15,33 +16,15 @@ export default function BasicInformation({
       <h2 className="text-xl font-semibold text-gray-800 border-b pb-2">
         Información Básica
       </h2>
-            
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <div>
-          <label 
-            htmlFor="group"
-            className="block text-sm font-medium text-gray-700 mb-2"
-            >
-            Grupo del Auto *
-          </label>
-          <select 
-            id="group"
-            value={formData?.group || ''}
-            onChange={(e) => handleChange('group', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg  focus:border-blue-500 transition-colors ${
-              errors?.group ? 'border-red-500' : 'border-gray-300'
-            }`}
-            required
-          >
-            <option value="">Selecciona un grupo</option>
-            <option value="Económico">Económico</option>
-            <option value="SUV Compacto">SUV Compacto</option>
-            <option value="Sedán Premium">Sedán Premium</option>
-          </select>
-          {errors?.group?.message && (
-            <p className="text-red-500 text-sm mt-1">{String(errors.group?.message)}</p>
-          )}
-        </div>
+          
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <CustomSelect
+          label="Grupo del Auto *"
+          options={["Económico", "SUV Compacto", "Sedán Premium"]}
+          value={formData?.group || ""}
+          onChange={(v) => handleChange("group", v)}
+          error={errors?.group?.message ? String(errors.group.message) : undefined}
+        />
         <div>
           <label 
             htmlFor="brand"
@@ -87,31 +70,13 @@ export default function BasicInformation({
             <p className="text-red-500 text-sm mt-1">{String(errors.year?.message)}</p>
           )}
         </div>
-        <div>
-          <label 
-            htmlFor="fuel_type"
-            className="block text-sm font-medium text-gray-700 mb-2">
-            Tipo de Combustible *
-          </label>
-          <select 
-            id="fuel_type"
-            value={formData?.fuel_type || ''}
-            onChange={(e) => handleChange('fuel_type', e.target.value) }
-            className={`w-full px-4 py-3 border rounded-lg  focus:border-blue-500 transition-colors ${
-              errors?.fuel_type ? 'border-red-500' : 'border-gray-300'
-            }`}
-            required
-          >
-            <option value="">Selecciona combustible</option>
-            <option value="gasolina">Gasolina</option>
-            <option value="diésel">Diésel</option>
-            <option value="híbrido">Híbrido</option>
-            <option value="eléctrico">Eléctrico</option>
-          </select>
-          {errors?.fuel_type?.message && (
-            <p className="text-red-500 text-sm mt-1">{String(errors.fuel_type?.message)}</p>
-          )}
-        </div>
+        <CustomSelect
+          label="Tipo de Combustible *"
+          options={["gasolina", "diésel", "híbrido", "eléctrico"]}
+          value={formData?.fuel_type || ""}
+          onChange={(v) => handleChange("fuel_type", v)}
+          error={errors?.fuel_type?.message ? String(errors.fuel_type.message) : undefined}
+        />
       </div>
     </div>
   )

@@ -1,12 +1,13 @@
 import { fetchCars } from "@/config/store/slices/car/thunk";
 import type { AppDispatch, RootState } from "@/config/store/store";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Search, Luggage, Users, DoorClosed, Gauge, Wind, Plus} from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/shared/hooks/useAuth";
 import type { SB_CarForRentModel } from "@/shared/models/carForRent/carForRent.model";
+import { clearFilters } from "@/config/store/slices/filters/filters.slice";
 
 export default function Catalog() {
     const [search, setSearch] = useState("")
@@ -81,6 +82,23 @@ export default function Catalog() {
                     </div>
                 )}
             </div>
+
+             {(filters.pick_up_location || filters.date_collection || search) && (
+                <div className="w-[80%] flex justify-between">
+                    <div className="bg-[var(--blue-tertiary)] p-2 rounded-xl">
+                        <span className="text-white">Filtrado por: {filters.pick_up_location}</span>
+                    </div>
+                    <button 
+                        onClick={() => {
+                            dispatch(clearFilters());
+                            setSearch("");
+                        }}
+                        className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+                    >
+                        Limpiar filtros
+                    </button>
+                </div>
+            )}
             
             <div className="w-[80%] grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
                 {filteredCars.length > 0 ? (
