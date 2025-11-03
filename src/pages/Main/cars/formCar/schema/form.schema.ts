@@ -46,7 +46,7 @@ export const formSchema = z.object({
     .max(10, "Máximo 10 archivos de imagen")
     .optional(),
 
-  urls_img: z.array(z.string().url("Debe ser una URL válida")).optional(),
+  urls_img: z.array(z.union([z.string(), z.instanceof(File)])).optional(),
 });
 
 export type CarFormData = z.infer<typeof formSchema>;
