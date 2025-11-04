@@ -29,6 +29,7 @@ export default function IndividualCar() {
           brand={car?.brand!}
           rent_per_day={car?.rent_per_day!}
           urls_img={car?.urls_img || []}
+          location={car?.pick_up_location!}
         />
         <Characteristics
           passengers={car?.passenger_capacity!}

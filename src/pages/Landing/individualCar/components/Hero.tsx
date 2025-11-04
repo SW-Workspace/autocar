@@ -2,17 +2,20 @@ import { Calendar, MapPin, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ViewImage from "./ViewImage";
+import ModalLocation from "./ModalLocation";
 
 interface HeroProps {
   group: string;
   brand: string;
   rent_per_day: number;
   urls_img: string[];
+  location: string;
 }
 
 export default function Hero(props: HeroProps) {
   const [index, setIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   
   const handleClick = (index:number) => {
      setIndex(index);
@@ -47,7 +50,10 @@ export default function Hero(props: HeroProps) {
                 <Calendar size={16} />
                 Reservar Ahora
               </button>
-              <button className="flex gap-1 p-2 items-center border border-white rounded-lg text-sm text-white font-semibold cursor-pointer">
+              <button 
+                className="flex gap-1 p-2 items-center border border-white rounded-lg text-sm text-white font-semibold cursor-pointer"
+                onClick={()=>setIsOpenModal(true)}
+              >
                 <MapPin size={16} />
                 ver ubicaciones
               </button>
@@ -84,6 +90,13 @@ export default function Hero(props: HeroProps) {
             urls_img={props.urls_img}
             index={index}
             onClose={() => setIsOpen(false)}
+          />
+      }
+      {isOpenModal &&
+          <ModalLocation 
+            open={isOpenModal}
+            onClose={() => setIsOpenModal(false)}
+            location={props.location}
           />
       }
     </>
