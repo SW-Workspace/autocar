@@ -35,6 +35,16 @@ export const applyFilters = (
       if (filters.features.radio && !car.radio) return false;
     }
 
+    if (filters.pick_up_location && filters.pick_up_location.trim() !== "") {
+      if (
+        !car.pick_up_location ||
+        car.pick_up_location.toLowerCase() !==
+          filters.pick_up_location.toLowerCase()
+      ) {
+        return false;
+      }
+    }
+
     if (filters.searchQuery && filters.searchQuery.trim() !== "") {
       const query = filters.searchQuery.toLowerCase();
       const matchesBrand = car.brand.toLowerCase().includes(query);

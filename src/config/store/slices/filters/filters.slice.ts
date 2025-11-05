@@ -18,6 +18,10 @@ export interface CarFilters {
     radio?: boolean;
   };
   searchQuery?: string;
+  pick_up_location?: string;
+  date_collection?: string;
+  hour?: string;
+  date_return?: string;
 }
 
 interface CarsFilterState {
@@ -39,6 +43,10 @@ const initialState: CarsFilterState = {
     fuelType: [],
     features: {},
     searchQuery: "",
+    pick_up_location: "",
+    date_collection: "",
+    hour: "",
+    date_return: "",
   },
   status: "idle",
   error: null,
@@ -123,7 +131,7 @@ export const {
   clearFilters,
   clearFilter,
   toggleFilterValue,
-  toggleFeature
+  toggleFeature,
 } = carsFilterSlice.actions;
 
 export default carsFilterSlice.reducer;
