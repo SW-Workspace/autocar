@@ -14,6 +14,7 @@ export default function IndividualCar() {
   const dispatch = useDispatch<AppDispatch>();
 
   const carId = Number(id);
+  const cId = id?.toString();
 
   useEffect(() => {
     dispatch(fetchCarById(carId));
@@ -22,14 +23,15 @@ export default function IndividualCar() {
   return (
     <>
       <div className="w-full flex flex-col justify-center items-center">
-
-        {/* TODO: Refactor (improve prop drilling) */} 
+        {/* TODO: Refactor (improve prop drilling) */}
         <Hero
           group={car?.group!}
           brand={car?.brand!}
           rent_per_day={car?.rent_per_day!}
           urls_img={car?.urls_img || []}
           location={car?.pick_up_location!}
+          owner_id={car?.owner_id!}
+          carId={cId!}
         />
         <Characteristics
           passengers={car?.passenger_capacity!}

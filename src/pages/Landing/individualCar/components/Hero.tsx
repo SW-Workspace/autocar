@@ -1,8 +1,9 @@
-import { Calendar, MapPin, ArrowLeft } from "lucide-react";
+import { Calendar, MapPin, ArrowLeft, Edit } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ViewImage from "./ViewImage";
 import ModalLocation from "./ModalLocation";
+import { useAuth } from "@/shared/hooks/useAuth";
 
 interface HeroProps {
   group: string;
@@ -10,28 +11,44 @@ interface HeroProps {
   rent_per_day: number;
   urls_img: string[];
   location: string;
+  owner_id: number;
+  carId: string;
 }
 
 export default function Hero(props: HeroProps) {
+  const { user } = useAuth();
+
   const [index, setIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  
-  const handleClick = (index:number) => {
-     setIndex(index);
-  }
-  
+
+  const handleClick = (index: number) => {
+    setIndex(index);
+  };
+
+  console.log(user);
+  console.log(props.owner_id);
+
   return (
     <>
       <section className="flex relative flex-col lg:flex-row justify-around max-lg:justify-center max-lg:gap-4 lg:pl-15 items-center w-full max-lg:mt-8 h-auto md:h-dvh mt-3 lg:mt:0 bg-gradient-to-br from-[var(--blue-tertiary)] to-[var(--green-primary)]">
-
-        <Link 
+        <Link
           to="/catalog"
           className="hidden lg:flex absolute top-10 left-30 items-center text-white text-sm"
         >
-          <ArrowLeft size={18}/>
+          <ArrowLeft size={18} />
           Regresar
         </Link>
+
+        {Number(user?.id) === props.owner_id && (
+          <Link
+            to={`/addcar/${props.carId}`}
+            className="hidden lg:flex absolute top-10 right-30 items-center text-white text-sm gap-1"
+          >
+            <Edit size={18} />
+            Editar
+          </Link>
+        )}
 
         <div className="flex justify-center items-center py-5 lg:py-0 text-white">
           <div className="flex flex-col gap-3">
@@ -50,9 +67,9 @@ export default function Hero(props: HeroProps) {
                 <Calendar size={16} />
                 Reservar Ahora
               </button>
-              <button 
+              <button
                 className="flex gap-1 p-2 items-center border border-white rounded-lg text-sm text-white font-semibold cursor-pointer"
-                onClick={()=>setIsOpenModal(true)}
+                onClick={() => setIsOpenModal(true)}
               >
                 <MapPin size={16} />
                 ver ubicaciones
@@ -64,41 +81,41 @@ export default function Hero(props: HeroProps) {
         <div className="flex h-max items-start justify-center gap-2 py-5 max-md:px-4">
           <div className="hidden sm:flex flex-col gap-2">
             {props.urls_img.map((url, i) => (
-             <img
-              key={i}
-              className={`w-15 h-15 object-cover rounded-lg bg-[var(--green-primary)] border border-[var(--green-primary)] ${index == i ? "opacity-40": "opacity-100"} cursor-pointer`}
-              src={url}
-              onClick={()=>handleClick(i)}
-            />
+              <img
+                key={i}
+                className={`w-15 h-15 object-cover rounded-lg bg-[var(--green-primary)] border border-[var(--green-primary)] ${index == i ? "opacity-40" : "opacity-100"} cursor-pointer`}
+                src={url}
+                onClick={() => handleClick(i)}
+              />
             ))}
           </div>
-          <div className="inline-block max-w-2xl border-2 border-green-200 bg-[var(--green-primary)] items-center justify-center rounded-lg ">           
+          <div className="inline-block max-w-2xl border-2 border-green-200 bg-[var(--green-primary)] items-center justify-center rounded-lg ">
             <div className="w-80 h-64 sm:w-140 sm:h-72 md:h-96 relative bg-white/50 backdrop-blur-2xl p-3 rounded-sm overflow-hidden">
-                <img
-                  className="w-full h-full object-cover rounded-lg cursor-pointer"
-                  src={props.urls_img[index]}
-                  onClick={() => setIsOpen(true)}
-                />
+              <img
+                className="w-full h-full object-cover rounded-lg cursor-pointer"
+                src={props.urls_img[index]}
+                onClick={() => setIsOpen(true)}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {isOpen &&
-          <ViewImage 
-            open={isOpen}
-            urls_img={props.urls_img}
-            index={index}
-            onClose={() => setIsOpen(false)}
-          />
-      }
-      {isOpenModal &&
-          <ModalLocation 
-            open={isOpenModal}
-            onClose={() => setIsOpenModal(false)}
-            location={props.location}
-          />
-      }
+      {isOpenModal && (
+        <ModalLocation
+          open={isOpenModal}
+          onClose={() => setIsOpenModal(false)}
+          location={props.location}
+        />
+      )}
+      {isOpen && (
+        <ViewImage
+          open={isOpen}
+          urls_img={props.urls_img}
+          index={index}
+          onClose={() => setIsOpen(false)}
+        />
+      )}
     </>
   );
 }

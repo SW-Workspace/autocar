@@ -71,7 +71,11 @@ export const routes = [
   },
   {
     path: "/addcar",
-    element: <AddCar />
+    element: <AddCar />,
+  },
+  {
+    path: "/addcar/:carId",
+    element: <AddCar />,
   },
   {
     element: <ProtectedRoutes />,
@@ -90,7 +94,7 @@ export const routes = [
           },
           {
             path: "auto/:id",
-            element:<FormCar/>
+            element: <FormCar />,
           },
           {
             path: "ajustes",
