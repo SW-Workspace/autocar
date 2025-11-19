@@ -23,11 +23,11 @@ export default function CarFeatures({
         Características del Auto
       </h2>
             
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
         {features.map((feature) => (
           <label 
             key={feature.key} 
-            className="flex items-center space-x-2 cursor-pointer"
+            className="flex justify-center text-center space-x-2 cursor-pointer"
           >
             <input 
               type="checkbox" 

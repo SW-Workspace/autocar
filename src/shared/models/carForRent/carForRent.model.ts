@@ -8,7 +8,7 @@ export interface SB_CarForRentModel {
   transmission: string;
   travel_conditions?: string;
   fuel_type?: string;
-  renter_id: number;
+  renter_id?: number;
   owner_id?: number | null;
   pick_up_location: string;
   available: boolean;

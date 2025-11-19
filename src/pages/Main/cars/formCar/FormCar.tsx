@@ -1,198 +1,256 @@
 import { useState } from "react";
 import { useCarForm } from "./useCarForm";
 import Section from "./components/Section";
-import InputField from "./components/InputField";
-import SelectField from "./components/SelectField";
-import ImageManager from "./components/ImageManager";
 import DialogDeleteCar from "./components/DialogDeleteCar";
-import DialogAddImageCar from "./components/DialogAddImageCar";
 import CarFeatures from "./components/CarFeatures";
+import CarImages from "./components/CarImages";
 
 export default function FormCar() {
+  const error = "Este apartado es obligatorio * ";
   const [openDelete, setOpenDelete] = useState(false);
-  const [openAddImage, setOpenAddImage] = useState(false);
-  const { 
-    register,
-    handleSubmit,
-    formState: { errors },
-    onSubmit,
-    urls_img,
-    handleAddImage,
-    handleDeleteImage,
-    carId 
-  } = useCarForm();
+  const { form, onSubmit, urls_img, carId } = useCarForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-5xl mx-auto p-6 space-y-10">
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="max-w-5xl mx-auto p-6 space-y-10"
+    >
       <Section title="Información Básica">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <SelectField
-                label="Selecciona un grupo *"
-                {...register("group")}
-                options={[
-                    { value: "Económico", label: "Económico" },
-                    { value: "SUV Compacto", label: "SUV Compacto" },
-                    { value: "Sedán Premium", label: "Sedán Premium" },
-                ]}
-                error={errors.group}
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Selecciona un grupo *</label>
+            <select {...form.register("group")} className="border rounded-lg p-2">
+              <option value="">Selecciona una opción</option>
+              <option value="Económico">Económico</option>
+              <option value="SUV Compacto">SUV Compacto</option>
+              <option value="Sedán Premium">Sedán Premium</option>
+            </select>
+            {form.formState.errors.group && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Marca *</label>
+            <input {...form.register("brand")} className="border rounded-lg p-2" />
+            {form.formState.errors.brand && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Año *</label>
+            <input
+              type="number"
+              {...form.register("year", { valueAsNumber: true })}
+              className="border rounded-lg p-2"
             />
-            <InputField 
-              label="Marca *" 
-              {...register("brand")} 
-              error={errors.brand}
-            />
-            <InputField 
-              label="Año *"
-              type="number" 
-              {...register("year", { valueAsNumber: true })} 
-              error={errors.year}
-            />
-            <SelectField
-                label="Tipo de Combustible *"
-                {...register("fuel_type")}
-                options={[
-                    { value: "gasolina", label: "Gasolina" },
-                    { value: "diésel", label: "Diésel" },
-                    { value: "eléctrico", label: "Eléctrico" },
-                    { value: "híbrido", label: "Híbrido" },
-                ]}
-                error={errors.fuel_type}
-            />
+            {form.formState.errors.year && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Tipo de Combustible *</label>
+            <select
+              {...form.register("fuel_type")}
+              className="border rounded-lg p-2"
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="gasolina">Gasolina</option>
+              <option value="diésel">Diésel</option>
+              <option value="eléctrico">Eléctrico</option>
+              <option value="híbrido">Híbrido</option>
+            </select>
+            {form.formState.errors.fuel_type && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
         </div>
       </Section>
 
       <Section title="Capacidades">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <InputField
-              label="Capacidad de pasajeros *"
-              type="number" {...register("passenger_capacity", { valueAsNumber: true })} 
-              error={errors.passenger_capacity}
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Capacidad de pasajeros *</label>
+            <input
+              type="number"
+              {...form.register("passenger_capacity", { valueAsNumber: true })}
+              className="border rounded-lg p-2"
             />
-            <InputField 
-              label="Capacidad de maletas *" 
-              type="number" {...register("luggage_capacity", { valueAsNumber: true })} 
-              error={errors.luggage_capacity} 
+            {form.formState.errors.passenger_capacity && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Capacidad de maletas *</label>
+            <input
+              type="number"
+              {...form.register("luggage_capacity", { valueAsNumber: true })}
+              className="border rounded-lg p-2"
             />
-            <InputField 
-              label="Capacidad del tanque *" 
-              type="number" {...register("tank_capacity", { valueAsNumber: true })} 
-              error={errors.tank_capacity} 
+            {form.formState.errors.luggage_capacity && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Capacidad del tanque *</label>
+            <input
+              type="number"
+              {...form.register("tank_capacity", { valueAsNumber: true })}
+              className="border rounded-lg p-2"
             />
+            {form.formState.errors.tank_capacity && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
         </div>
       </Section>
 
       <Section title="Especificaciones Técnicas">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <SelectField
-                label="Transmisión*"
-                {...register("transmission")}
-                options={[
-                    { value: "Automática", label: "Automática" },
-                    { value: "Manual", label: "Manual" },
-                ]}
-                error={errors.transmission}
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Transmisión *</label>
+            <select
+              {...form.register("transmission")}
+              className="border rounded-lg p-2"
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="Automática">Automática</option>
+              <option value="Manual">Manual</option>
+            </select>
+            {form.formState.errors.transmission && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Motor *</label>
+            <input {...form.register("engine")} className="border rounded-lg p-2" />
+            {form.formState.errors.engine && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Consumo de Combustible *</label>
+            <input
+              {...form.register("fuel_consumption")}
+              className="border rounded-lg p-2"
             />
-            <InputField 
-              label="Motor *" 
-              {...register("engine")} 
-              error={errors.engine}
+            {form.formState.errors.fuel_consumption && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Número de Puertas *</label>
+            <input
+              type="number"
+              {...form.register("car_doors", { valueAsNumber: true })}
+              className="border rounded-lg p-2"
             />
-            <InputField 
-              label="Consumo de Combustible *" 
-              {...register("fuel_consumption")} 
-              error={errors.fuel_consumption}
-            />
-            <InputField
-              label="Número de Puertas *" 
-              type="number" 
-              {...register("car_doors", { valueAsNumber: true })} 
-              error={errors.car_doors}
-            />
+            {form.formState.errors.car_doors && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
         </div>
       </Section>
 
       <Section title="Características del Auto">
-        <CarFeatures register={register}/>
+        <CarFeatures register={form.register} />
       </Section>
 
       <Section title="Información de Renta">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputField 
-            label="Precio por Día ($) *" 
-            type="number" 
-            {...register("rent_per_day", { valueAsNumber: true })} 
-            error={errors.rent_per_day} 
-          />
-          <InputField
-            label="Duración Mínima (días) *"
-            type="number"
-            {...register("rental_duraction_days", { valueAsNumber: true })} 
-            error={errors.rental_duraction_days} 
-          />
-          <InputField 
-            label="Ubicación de Recogida *"
-            {...register("pick_up_location")} 
-            error={errors.pick_up_location}
-          />
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Precio por Día ($) *</label>
+            <input
+              type="number"
+              {...form.register("rent_per_day", { valueAsNumber: true })}
+              className="border rounded-lg p-2"
+            />
+            {form.formState.errors.rent_per_day && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium">Duración Mínima (días) *</label>
+            <input
+              type="number"
+              {...form.register("rental_duraction_days", { valueAsNumber: true })}
+              className="border rounded-lg p-2"
+            />
+            {form.formState.errors.rental_duraction_days && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col md:col-span-2">
+            <label className="mb-1 font-medium">Ubicación de Recogida *</label>
+            <input
+              {...form.register("pick_up_location")}
+              className="border rounded-lg p-2"
+            />
+            {form.formState.errors.pick_up_location && (
+              <span className="text-red-500 text-sm">{error}</span>
+            )}
+          </div>
         </div>
       </Section>
 
       <Section title="Información adicional">
         <div className="flex flex-col">
-              <label className="mb-1 font-medium">Condiciones de viaje</label>
-              <textarea
-                {...register("travel_conditions")}
-                className="w-full h-40 border rounded-lg p-2"
-              />
-            
-            </div>
-            <div className="flex flex-col">
-              <label className="mb-1 font-medium">Detalles adicionales</label>
-              <textarea 
-                {...register("details")} 
-                className="w-full h-40 border rounded-lg p-2"
-              />
-            </div>
+          <label className="mb-1 font-medium">Condiciones de viaje</label>
+          <textarea
+            {...form.register("travel_conditions")}
+            className="w-full h-40 border rounded-lg p-2"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label className="mb-1 font-medium">Detalles adicionales</label>
+          <textarea
+            {...form.register("details")}
+            className="w-full h-40 border rounded-lg p-2"
+          />
+        </div>
       </Section>
 
       <Section title="Imágenes del auto">
-        <ImageManager 
-          urls={urls_img} 
-          onAdd={() => setOpenAddImage(true)} 
-          onDelete={handleDeleteImage}
+        <CarImages
+          urls_img={urls_img}
+          setUrls={(imgs) => form.setValue("urls_img", imgs, { shouldDirty: true })}
+          errors={form.formState.errors}
         />
       </Section>
 
       <div className="flex justify-end gap-2">
-        <button 
-          type="button" 
-          className="bg-red-500 text-white px-6 py-2 rounded-lg" 
+        <button
+          type="button"
+          className="bg-red-500 text-white px-6 py-2 rounded-lg"
           onClick={() => setOpenDelete(true)}
         >
           Eliminar
         </button>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="bg-blue-500 text-white px-6 py-2 rounded-lg"
         >
-            Guardar
+          Guardar
         </button>
       </div>
 
-      {openDelete && 
-        <DialogDeleteCar 
-          id={carId} 
-          open={openDelete} 
-          onClose={() => setOpenDelete(false)} 
+      {openDelete && (
+        <DialogDeleteCar
+          id={carId}
+          open={openDelete}
+          onClose={() => setOpenDelete(false)}
         />
-      }
-      {openAddImage && 
-        <DialogAddImageCar
-          open={openAddImage} 
-          onClose={() => setOpenAddImage(false)} 
-          onAddImage={handleAddImage} 
-        />
-      }
+      )}
     </form>
   );
 }
